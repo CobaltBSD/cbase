@@ -1,6 +1,6 @@
 # cbtutils (Cobalt Utils)
 
-An assortment of various UNIX system utilities ported to Cobalt from a wide variety of sources. Most of these are ported from various UNIX-like sources that are not GNU/Linux. A few originate from native GNU/Linux sources, particularly sbase and toybox, but have been modified to use cutils' build system and not depend on the rest of their native packages. A few of these, such as our version of `ls`, are heavily modified from their original ported form to support additional functionality.
+An assortment of various UNIX system utilities ported to Cobalt from a wide variety of sources. Most of these are ported from various UNIX-like sources that are not GNU/Linux. A few of these, such as our version of `ls`, are heavily modified from their original ported form to support additional functionality.
 
 ## Utils
 * astro - Displays rising/setting times of various celestial objects (Ported from Plan9)
