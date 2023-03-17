@@ -9,7 +9,7 @@ An assortment of various UNIX system utilities ported to Cobalt from a wide vari
 * freq - Displays a histogram of character frequencies (Ported from Plan9)
 * locale - Displays locale environment variables (Ported from OpenBSD)
 * ls - List files (Forked from OpenBSD; heavily modified)
-* nbperf - Generate a perfect hash function (Ported from NetBSD) #XXX?
+* nbperf - Generate a perfect hash function (Ported from NetBSD)
 * news - Displays news items as they appear in a directory (Ported from Plan9)
 * pbd - Display name of current working directory (Ported from Plan9)
 * primes - Display primes in a selected range of numbers (Ported from OpenBSD)
