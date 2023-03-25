@@ -1,35 +1,47 @@
 all:
-	(cd astro && make)
-	(cd banner && make)
-	(cd fortune && make)
-	(cd freq && make)
-	(cd lib9 && make)
-	(cd libbio && make)
-	(cd locale && make)
-	(cd ls && make)
-	(cd nbperf && make)
-	(cd news && make)
-	(cd pbd && make)
-	(cd primes && make)
-	(cd rs && make)
-	(cd unicode && make)
-	(cd units && make)
-	(cd unutf && make)
+	make -C astro
+	make -C banner
+	make -C bs
+	make -C fortune
+	make -C freq
+	make -C grdc
+	make -C lib9
+	make -C libbio
+	make -C locale
+	make -C ls
+	make -C nbperf
+	make -C news
+	make -C number
+	make -C pbd
+	make -C pom
+	make -C primes
+	make -C rain
+	make -C rs
+	make -C tetris
+	make -C unicode
+	make -C unutf
+	make -C worms
 
 clean:
-	(cd astro && make clean)
-	(cd banner && make clean)
-	(cd fortune && make clean)
-	(cd freq && make clean)
-	(cd lib9 && make clean)
-	(cd libbio && make clean)
-	(cd locale && make clean)
-	(cd ls && make clean)
-	(cd nbperf && make clean)
-	(cd news && make clean)
-	(cd pbd && make clean)
-	(cd primes && make clean)
-	(cd rs && make clean)
-	(cd unicode && make clean)
-	(cd units && make clean)
-	(cd unutf && make clean)
+	make -C astro clean
+	make -C banner clean
+	make -C bs clean
+	make -C fortune clean
+	make -C freq clean
+	make -C grdc clean
+	make -C lib9 clean
+	make -C libbio clean
+	make -C locale clean
+	make -C ls clean
+	make -C nbperf clean
+	make -C news clean
+	make -C number clean
+	make -C pbd clean
+	make -C pom clean
+	make -C primes clean
+	make -C rain clean
+	make -C rs clean
+	make -C tetris clean
+	make -C unicode clean
+	make -C unutf clean
+	make -C worms clean

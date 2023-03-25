@@ -11,7 +11,7 @@
 
 #define	NINC	50	/* Multiples of directory allocation */
 char	*NEWS = "#9/news";
-char	TFILE[] = "%s/lib/newstime";
+char	TFILE[] = "%s/.local/share/newstime";
 
 /*
  *	The following items should not be printed.
