@@ -8,7 +8,7 @@ An assortment of various UNIX system utilities ported to Cobalt from a wide vari
 * bs - Battleship game (Ported from OpenBSD)
 * fortune - Displays a random message from a database (Ported from OpenBSD)
 * freq - Displays a histogram of character frequencies (Ported from Plan9)
-* grdc - Terminal digital clock
+* grdc - Terminal digital clock (Ported from OpenBSD)
 * locale - Displays locale environment variables (Ported from OpenBSD)
 * ls - List files (Forked from OpenBSD; heavily modified)
 * nbperf - Generate a perfect hash function (Ported from NetBSD)
