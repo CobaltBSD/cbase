@@ -1,9 +1,12 @@
 all:
-	(cd strfile && make)
-	(cd fortune && make)
-	(cd datfiles && make)
+	make -C unstr
+	make -C strfile
+	make -C fortune
+	
+	cd datfiles && make
 
 clean:
-	(cd strfile && make clean)
-	(cd fortune && make clean)
-	(cd datfiles && make clean)
+	make -C unstr clean
+	make -C strfile clean
+	make -C fortune clean
+	make -C datfiles clean

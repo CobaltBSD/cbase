@@ -1,3 +1,17 @@
+0.3 - Apr 6 2023
+* Removed nbperf
+* Added support for any C compiler, instead of just gcc
+* Makefile improvements for fortune
+* Minor cleanup
+* Removed astro
+* Removed bcat executable from libbio
+* Removed pbd
+* Removed pom
+* Fixed units not being built
+* Removed worms
+* Added manpages for libbio and strfile
+* Added unstr
+
 0.2 - Mar 24 2023
 * Added bs
 * Added grdc

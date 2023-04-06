@@ -1,5 +1,5 @@
 all:
-	gcc number.c -o number -lbsd
+	$(CC) number.c -o number -lbsd
 
 clean:
 	rm -fv number

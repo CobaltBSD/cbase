@@ -1,5 +1,5 @@
 all:
-	gcc bs.c -o bs -lcurses -lbsd
+	$(CC) bs.c -o bs -lcurses -lbsd
 
 clean:
 	rm -fv bs

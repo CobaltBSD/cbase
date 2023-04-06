@@ -1,5 +1,5 @@
 all:
-	gcc rs.c -o rs
+	$(CC) rs.c -o rs
 
 clean:
 	rm -fv rs
