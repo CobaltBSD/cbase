@@ -16,7 +16,7 @@ news \- print news items
 When invoked without options,
 this simple local news service
 prints files that have appeared in
-.BR /lib/news
+.BR /usr/share/news
 since last reading, most recent first,
 with each preceded by an appropriate header.
 The time of reading is recorded.
@@ -35,7 +35,7 @@ Other arguments
 select particular news items.
 .PP
 To post a news item, create a file in
-.BR  \*9/news .
+.BR  \*9/usr/share/news .
 .\" .PP
 .\" You may arrange to receive news automatically by 
 .\" registering your mail address in
@@ -50,13 +50,11 @@ or
 are ignored.
 .SH FILES
 .TP
-.B \*9/news/*
+.B \*9/usr/share/news/*
 articles
 .TP
-.B $HOME/lib/newstime
+.B $HOME/.local/share/newstime
 modify time is time news was last read
 .\" .TP
 .\" .B /sys/lib/subscribers
 who gets news mailed to them
-.SH SOURCE
-.B \*9/src/cmd/news.c
