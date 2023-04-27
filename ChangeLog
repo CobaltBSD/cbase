@@ -1,3 +1,7 @@
+0.6 - ...
+* Numerous makefile fixes
+* Fixed cbtutils.conf
+
 0.5 - Apr 26 2023
 * Compilation fixes for mold linker
 * Integrated support for crunchgen-ng
