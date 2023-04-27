@@ -40,7 +40,10 @@ install:
 	ln -sf cbtutils $(DESTDIR)$(PREFIX)/bin/unicode
 	ln -sf cbtutils $(DESTDIR)$(PREFIX)/bin/units
 	ln -sf cbtutils $(DESTDIR)$(PREFIX)/bin/unutf
-	mkdir -pv $(DESTDIR)$(PREFIX)/share/man/man{1,3,6}
+	#mkdir -pv $(DESTDIR)$(PREFIX)/share/man/man{1,3,6}
+	mkdir -pv $(DESTDIR)$(PREFIX)/share/man/man1
+	#mkdir -pv $(DESTDIR)$(PREFIX)/share/man/man3
+	mkdir -pv $(DESTDIR)$(PREFIX)/share/man/man6
 	cp -v banner/banner.1 "$(DESTDIR)$(PREFIX)/share/man/man1"
 	cp -v bs/bs.6 "$(DESTDIR)$(PREFIX)/share/man/man6"
 	cp -v fortune/strfile/strfile.1 "$(DESTDIR)$(PREFIX)/share/man/man1"
