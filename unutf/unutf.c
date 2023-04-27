@@ -8,7 +8,7 @@
 
 Biobuf bin;
 
-void
+int
 main(void)
 {
 	int c;

@@ -6,14 +6,13 @@ char	usage[] = "unicode { [-t] hex hex ... | hexmin-hexmax ... | [-n] char ... }
 char	hex[] = "0123456789abcdefABCDEF";
 int	numout = 0;
 int	text = 0;
-char	*err;
 Biobuf	bout;
 
 char	*range(char*[]);
 char	*nums(char*[]);
 char	*chars(char*[]);
 
-void
+int
 main(int argc, char *argv[])
 {
 	ARGBEGIN{

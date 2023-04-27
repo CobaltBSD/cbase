@@ -1,5 +1,0 @@
-all:
-	$(CC) -I$(PWD)/p9include -l9 -lbio news.c -o news
-
-clean:
-	rm -fv news

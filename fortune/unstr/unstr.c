@@ -55,7 +55,7 @@
 #include <bsd/unistd.h>
 #include <arpa/inet.h>
 
-#include "strfile.h"
+#include "../strfile/strfile.h"
 
 char	*Infile,			/* name of input file */
 	Datafile[PATH_MAX],		/* name of data file */

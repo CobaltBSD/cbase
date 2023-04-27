@@ -1,3 +1,10 @@
+0.5 - Apr 26 2023
+* Compilation fixes for mold linker
+* Integrated support for crunchgen-ng
+* Fixed libbio and lib9 linking
+* Added a makefile install rule
+* Fixed fortune/datfiles makefile
+
 0.4 - Apr 19 2023
 * Added proper man page for unstr
 * Fixed broken references and inaccuracies in some man pages
