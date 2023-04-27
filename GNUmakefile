@@ -11,8 +11,14 @@ clean:
 	make -C lib9 clean
 	make -C libbio clean
 	find -name "*.o" -delete
-	rm -fv *{_stub.c,.lo}
-	rm -fv cbtutils{,.c{,ache},-makefile}
+	#rm -fv *{_stub.c,.lo}
+	rm -fv *_stub.c
+	rm -fv *.lo
+	#rm -fv cbtutils{,.c{,ache},-makefile}
+	rm -fv cbtutils
+	rm -fv cbtutils.c
+	rm -fv cbtutils.cache
+	rm -fv cbtutils-makefile
 
 install:
 	mkdir -pv $(DESTDIR)$(PREFIX)/bin
@@ -51,6 +57,22 @@ install:
 	#cp -v unicode/ascii.1 "$(DESTDIR)$(PREFIX)/share/man/man1"
 	cp -v units/units.1 "$(DESTDIR)$(PREFIX)/share/man/man1"
 	mkdir -v $(DESTDIR)$(PREFIX)/share/fortunes
-	cp -v fortune/datfiles/{fortunes{,2}{,-o},startrek,zippy,recipes,limerick}{,.dat} $(DESTDIR)$(PREFIX)/share/fortunes
+	#cp -v fortune/datfiles/{fortunes{,2}{,-o},startrek,zippy,recipes,limerick}{,.dat} $(DESTDIR)$(PREFIX)/share/fortunes
+	cp -v fortune/datfiles/fortunes $(DESTDIR)$(PREFIX)/share/fortunes
+	cp -v fortune/datfiles/fortunes-o $(DESTDIR)$(PREFIX)/share/fortunes
+	cp -v fortune/datfiles/fortunes2 $(DESTDIR)$(PREFIX)/share/fortunes
+	cp -v fortune/datfiles/fortunes2-o $(DESTDIR)$(PREFIX)/share/fortunes
+	cp -v fortune/datfiles/startrek $(DESTDIR)$(PREFIX)/share/fortunes
+	cp -v fortune/datfiles/zippy $(DESTDIR)$(PREFIX)/share/fortunes
+	cp -v fortune/datfiles/recipes $(DESTDIR)$(PREFIX)/share/fortunes
+	cp -v fortune/datfiles/limerick $(DESTDIR)$(PREFIX)/share/fortunes
+	cp -v fortune/datfiles/fortunes.dat $(DESTDIR)$(PREFIX)/share/fortunes
+	cp -v fortune/datfiles/fortunes-o.dat $(DESTDIR)$(PREFIX)/share/fortunes
+	cp -v fortune/datfiles/fortunes2.dat $(DESTDIR)$(PREFIX)/share/fortunes
+	cp -v fortune/datfiles/fortunes2-o.dat $(DESTDIR)$(PREFIX)/share/fortunes
+	cp -v fortune/datfiles/startrek.dat $(DESTDIR)$(PREFIX)/share/fortunes
+	cp -v fortune/datfiles/zippy.dat $(DESTDIR)$(PREFIX)/share/fortunes
+	cp -v fortune/datfiles/recipes.dat $(DESTDIR)$(PREFIX)/share/fortunes
+	cp -v fortune/datfiles/limerick.dat $(DESTDIR)$(PREFIX)/share/fortunes
 	mkdir -v "$(DESTDIR)$(PREFIX)/share/news" # Note: Expects a $HOME/.local/share directory in order to save which news items have already been read
 	cp -v units/units.lib "$(DESTDIR)$(PREFIX)/share"
