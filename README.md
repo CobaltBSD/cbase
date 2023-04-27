@@ -19,10 +19,7 @@ An assortment of various UNIX system utilities ported to Cobalt from a wide vari
 * units - Convert between different units (Ported from OpenBSD)
 * unutf - Convert characters into their corresponding number (Ported from Plan9)
 
-## Libraries
-cbtutils also includes a shared lib9 and libbio, which are used by the Plan9 utilities.
-
-None of these programs have dependencies on one another, with the exception of the plan9 utilities requiring lib9 or libbio. This means you can easily choose which ones you want to install.
+cbtutils requires [crunchgen-ng](https://github.com/CobaltBSD/crunchgen-ng) to build.
 
 ## License
 cbtutils is available under a wide variety of licenses, as the components of it come from a large number of sources. For all other components of cbtutils (e.g. the makefiles), 0BSD license applies. See `LICENSE`
