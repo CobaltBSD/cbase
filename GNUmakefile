@@ -77,5 +77,6 @@ install:
 	cp -v fortune/datfiles/zippy.dat $(DESTDIR)$(PREFIX)/share/fortunes
 	cp -v fortune/datfiles/recipes.dat $(DESTDIR)$(PREFIX)/share/fortunes
 	cp -v fortune/datfiles/limerick.dat $(DESTDIR)$(PREFIX)/share/fortunes
-	mkdir -pv "$(DESTDIR)$(PREFIX)/share/news" # Note: Expects a $HOME/.local/share directory in order to save which news items have already been read
+# Note: Expects a $HOME/.local/share directory in order to save which news items have already been read
+	mkdir -pv "$(DESTDIR)$(PREFIX)/share/news"
 	cp -v units/units.lib "$(DESTDIR)$(PREFIX)/share"
