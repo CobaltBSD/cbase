@@ -13,8 +13,8 @@ colorprint(FTSENT *p)
 	// Wrap the name in appropriate color bytes
 	// TODO: make this customizable
 
-	char *colorbytes = "\033[0;37;40m"; // Default is white w/ black background
-	
+	char *colorbytes = "\033[0;37;39m"; // Default is white w/ black background
+
 	int fullpath_sz = snprintf(NULL, 0, "%s/%s", p->fts_path, p->fts_accpath);
 	char *fullpath = malloc(fullpath_sz + 1);
 	(void) sprintf(fullpath, "%s/%s", p->fts_path, p->fts_accpath);
@@ -24,19 +24,19 @@ colorprint(FTSENT *p)
 
 	// Check file types
 	if(S_ISBLK(path_stat.st_mode)) {
-		colorbytes = "\033[1;33;40m";
+		colorbytes = "\033[1;33;39m";
 	} else if(S_ISCHR(path_stat.st_mode)) {
-		colorbytes = "\033[0;33;40m";
+		colorbytes = "\033[0;33;39m";
 	} else if(S_ISLNK(path_stat.st_mode)) {
-		colorbytes = "\033[1;35;40m";
+		colorbytes = "\033[1;35;39m";
 	} else if(S_ISFIFO(path_stat.st_mode)) {
-		colorbytes = "\033[3;33;40m";
+		colorbytes = "\033[3;33;39m";
 	} else if(S_ISSOCK(path_stat.st_mode)) {
-		colorbytes = "\033[3;35;40m";
+		colorbytes = "\033[3;35;39m";
 	} else if(S_ISDIR(path_stat.st_mode)) {
-		colorbytes = "\033[1;36;40m";
+		colorbytes = "\033[1;36;39m";
 	} else if(S_IXUSR & path_stat.st_mode) {
-		colorbytes = "\033[1;31;40m";
+		colorbytes = "\033[1;31;39m";
 	}
 
 	// Check file permissions
@@ -64,7 +64,7 @@ colorprint(FTSENT *p)
 
 	for (total_width = 0; *newname != '\0'; newname += len) {
 		if ((len = mbtowc(&wc, newname, MB_CUR_MAX)) == -1) {
-			(void)mbtowc(NULL, NULL, MB_CUR_MAX);
+			(void) mbtowc(NULL, NULL, MB_CUR_MAX);
 			putchar(*newname);
 			total_width++;
 			len = 1;
