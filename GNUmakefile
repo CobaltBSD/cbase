@@ -59,7 +59,7 @@ install:
 	cp -v tetris/tetris.6 "$(DESTDIR)$(PREFIX)/share/man/man6"
 	#cp -v unicode/ascii.1 "$(DESTDIR)$(PREFIX)/share/man/man1"
 	cp -v units/units.1 "$(DESTDIR)$(PREFIX)/share/man/man1"
-	mkdir -v $(DESTDIR)$(PREFIX)/share/fortunes
+	mkdir -pv $(DESTDIR)$(PREFIX)/share/fortunes
 	#cp -v fortune/datfiles/{fortunes{,2}{,-o},startrek,zippy,recipes,limerick}{,.dat} $(DESTDIR)$(PREFIX)/share/fortunes
 	cp -v fortune/datfiles/fortunes $(DESTDIR)$(PREFIX)/share/fortunes
 	cp -v fortune/datfiles/fortunes-o $(DESTDIR)$(PREFIX)/share/fortunes
