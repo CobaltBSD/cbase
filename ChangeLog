@@ -2,6 +2,7 @@
 * Numerous makefile fixes
 * Fixed cbtutils.conf
 * Removed black background from most entries
+* Added getent
 
 0.5 - Apr 26 2023
 * Compilation fixes for mold linker

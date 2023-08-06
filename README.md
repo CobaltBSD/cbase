@@ -18,6 +18,7 @@ An assortment of various UNIX system utilities ported to Cobalt from a wide vari
 * unicode - Display unicode characters corresponding to a number (Ported from Plan9)
 * units - Convert between different units (Ported from OpenBSD)
 * unutf - Convert characters into their corresponding number (Ported from Plan9)
+* getent - Get database entries (Ported from Alpine Linux, which was in turn ported from NetBSD)
 
 cbtutils requires [crunchgen-ng](https://github.com/CobaltBSD/crunchgen-ng) to build.
 

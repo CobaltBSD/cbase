@@ -40,6 +40,7 @@ install:
 	ln -sf cbtutils $(DESTDIR)$(PREFIX)/bin/unicode
 	ln -sf cbtutils $(DESTDIR)$(PREFIX)/bin/units
 	ln -sf cbtutils $(DESTDIR)$(PREFIX)/bin/unutf
+	ln -sf cbtutils $(DESTDIR)$(PREFIX)/bin/getent
 	#mkdir -pv $(DESTDIR)$(PREFIX)/share/man/man{1,3,6}
 	mkdir -pv $(DESTDIR)$(PREFIX)/share/man/man1
 	#mkdir -pv $(DESTDIR)$(PREFIX)/share/man/man3
