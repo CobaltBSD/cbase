@@ -1,7 +1,7 @@
-0.6 - ...
+0.6 - Aug 5 2023
 * Numerous makefile fixes
 * Fixed cbtutils.conf
-* Removed black background from most entries
+* Removed black background from ls entries
 * Added getent
 
 0.5 - Apr 26 2023
