@@ -11,10 +11,8 @@ clean:
 	make -C lib9 clean
 	make -C libbio clean
 	find -name "*.o" -delete
-	#rm -fv *{_stub.c,.lo}
 	rm -fv *_stub.c
 	rm -fv *.lo
-	#rm -fv cbtutils{,.c{,ache},-makefile}
 	rm -fv cbtutils
 	rm -fv cbtutils.c
 	rm -fv cbtutils.cache
@@ -41,9 +39,10 @@ install:
 	ln -sf cbtutils $(DESTDIR)$(PREFIX)/bin/units
 	ln -sf cbtutils $(DESTDIR)$(PREFIX)/bin/unutf
 	ln -sf cbtutils $(DESTDIR)$(PREFIX)/bin/getent
-	#mkdir -pv $(DESTDIR)$(PREFIX)/share/man/man{1,3,6}
+	ln -sf cbtutils $(DESTDIR)$(PREFIX)/bin/c89
+	ln -sf cbtutils $(DESTDIR)$(PREFIX)/bin/c99
+	ln -sf cbtutils $(DESTDIR)$(PREFIX)/bin/entropy
 	mkdir -pv $(DESTDIR)$(PREFIX)/share/man/man1
-	#mkdir -pv $(DESTDIR)$(PREFIX)/share/man/man3
 	mkdir -pv $(DESTDIR)$(PREFIX)/share/man/man6
 	cp -v banner/banner.1 "$(DESTDIR)$(PREFIX)/share/man/man1"
 	cp -v bs/bs.6 "$(DESTDIR)$(PREFIX)/share/man/man6"
@@ -51,17 +50,17 @@ install:
 	cp -v fortune/fortune/fortune.6 "$(DESTDIR)$(PREFIX)/share/man/man6"
 	cp -v freq/freq.1 "$(DESTDIR)$(PREFIX)/share/man/man1"
 	cp -v grdc/grdc.6 "$(DESTDIR)$(PREFIX)/share/man/man6"
-	#cp -v libbio/bio.3 "$(DESTDIR)$(PREFIX)/share/man/man3"
 	cp -v locale/locale.1 "$(DESTDIR)$(PREFIX)/share/man/man1"
 	cp -v ls/ls.1 "$(DESTDIR)$(PREFIX)/share/man/man1"
 	cp -v news/news.1 "$(DESTDIR)$(PREFIX)/share/man/man1"
 	cp -v number/number.6 "$(DESTDIR)$(PREFIX)/share/man/man6"
 	cp -v rs/rs.1 "$(DESTDIR)$(PREFIX)/share/man/man1"
 	cp -v tetris/tetris.6 "$(DESTDIR)$(PREFIX)/share/man/man6"
-	#cp -v unicode/ascii.1 "$(DESTDIR)$(PREFIX)/share/man/man1"
+	cp -v unicode/unicode.1 "$(DESTDIR)$(PREFIX)/share/man/man1"
 	cp -v units/units.1 "$(DESTDIR)$(PREFIX)/share/man/man1"
+	cp -v c89/c89.1 "$(DESTDIR)$(PREFIX)/share/man/man1"
+	cp -v c99/c99.1 "$(DESTDIR)$(PREFIX)/share/man/man1"
 	mkdir -pv $(DESTDIR)$(PREFIX)/share/fortunes
-	#cp -v fortune/datfiles/{fortunes{,2}{,-o},startrek,zippy,recipes,limerick}{,.dat} $(DESTDIR)$(PREFIX)/share/fortunes
 	cp -v fortune/datfiles/fortunes $(DESTDIR)$(PREFIX)/share/fortunes
 	cp -v fortune/datfiles/fortunes-o $(DESTDIR)$(PREFIX)/share/fortunes
 	cp -v fortune/datfiles/fortunes2 $(DESTDIR)$(PREFIX)/share/fortunes
@@ -78,6 +77,5 @@ install:
 	cp -v fortune/datfiles/zippy.dat $(DESTDIR)$(PREFIX)/share/fortunes
 	cp -v fortune/datfiles/recipes.dat $(DESTDIR)$(PREFIX)/share/fortunes
 	cp -v fortune/datfiles/limerick.dat $(DESTDIR)$(PREFIX)/share/fortunes
-# Note: Expects a $HOME/.local/share directory in order to save which news items have already been read
 	mkdir -pv "$(DESTDIR)$(PREFIX)/share/news"
 	cp -v units/units.lib "$(DESTDIR)$(PREFIX)/share"

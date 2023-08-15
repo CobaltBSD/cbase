@@ -19,6 +19,9 @@ An assortment of various UNIX system utilities ported to Cobalt from a wide vari
 * units - Convert between different units (Ported from OpenBSD)
 * unutf - Convert characters into their corresponding number (Ported from Plan9)
 * getent - Get database entries (Ported from Alpine Linux, which was in turn ported from NetBSD)
+* c89 - POSIX c89 compatibility program (Ported from FreeBSD)
+* c99 - POSIX c99 compitibility program (Ported from FreeBSD)
+* entropy - Prints the entropy of stdin using zxcvbn (Requires zxcvbn-c)
 
 cbtutils requires [crunchgen-ng](https://github.com/CobaltBSD/crunchgen-ng) to build.
 

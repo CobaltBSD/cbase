@@ -1,3 +1,9 @@
+0.7 - Aug 15 2023
+* Add zxcvbn entropy program
+* Add c89 and c99 compatibility programs for the C compiler
+* Makefile cleanup
+* Replaced unicode/ascii.1 with unicode/unicode.1
+
 0.6 - Aug 5 2023
 * Numerous makefile fixes
 * Fixed cbtutils.conf
