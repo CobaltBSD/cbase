@@ -21,9 +21,12 @@ An assortment of various UNIX system utilities ported to Cobalt from a wide vari
 * getent - Get database entries (Ported from Alpine Linux, which was in turn ported from NetBSD)
 * c89 - POSIX c89 compatibility program (Ported from FreeBSD)
 * c99 - POSIX c99 compitibility program (Ported from FreeBSD)
-* entropy - Prints the entropy of stdin using zxcvbn (Requires zxcvbn-c)
+* entropy - Prints the entropy of stdin using zxcvbn (Requires [zxcvbn-c](https://github.com/tsyrogit/zxcvbn-c); see below for installation tips)
 
 cbtutils requires [crunchgen-ng](https://github.com/CobaltBSD/crunchgen-ng) to build.
+
+## ZXCVBN-C installation
+cbtutils includes a command-line tool for calculating passphrase entropy using zxcvbn. If you wish to avoid this requirement, you can remove the referenced to `zxcvbn` and `entropy` from cbtutils.conf. Otherwise, you will also need to install one of the `.dict` dictionaries from the zxcvbn-c source directory to `/usr/share/misc/zxcvbn.dict`.
 
 ## License
 cbtutils is available under a wide variety of licenses, as the components of it come from a large number of sources. For all other components of cbtutils (e.g. the makefiles), 0BSD license applies. See `LICENSE`
