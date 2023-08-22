@@ -28,7 +28,7 @@ This program is intended for systems running Cobalt. It is expected to work on o
 cbtutils requires [crunchgen-ng](https://github.com/CobaltBSD/crunchgen-ng) to build.
 
 ## ZXCVBN-C installation
-cbtutils includes a command-line tool for calculating passphrase entropy using zxcvbn. If you wish to avoid this requirement, you can remove the referenced to `zxcvbn` and `entropy` from cbtutils.conf. Otherwise, you will also need to install one of the `.dict` dictionaries from the zxcvbn-c source directory to `/usr/share/misc/zxcvbn.dict`.
+cbtutils includes a command-line tool for calculating passphrase entropy using zxcvbn. If you wish to avoid this requirement, you can remove the references to `zxcvbn` and `entropy` from cbtutils.conf. Otherwise, you will also need to install one of the built `.dict` dictionaries from the zxcvbn-c source directory to `/usr/share/misc/zxcvbn.dict`.
 
 ## License
 cbtutils is available under a wide variety of licenses, as the components of it come from a large number of sources. For all other components of cbtutils (e.g. the makefiles), 0BSD license applies. See `LICENSE`
