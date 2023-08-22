@@ -1,4 +1,4 @@
-0.7 - Aug 15 2023
+0.7 - Aug 21 2023
 * Add zxcvbn entropy program
 * Add c89 and c99 compatibility programs for the C compiler
 * Makefile cleanup
