@@ -2,6 +2,8 @@
 
 An assortment of various UNIX system utilities ported to Cobalt from a wide variety of sources. Most of these are ported from various UNIX-like sources that are not GNU/Linux. A few of these, such as our version of `ls`, are heavily modified from their original ported form to support additional functionality.
 
+This program is intended for systems running Cobalt. It is expected to work on other systems given that the dependencies are met, but no guarantees are set. Furthermore, most of these programs are extremely simple (Typically one or a few source files linked with libbsd) so you should easily be able to compile them manually if needed.
+
 ## Utils
 * banner - Displays an ASCII art text banner (Ported from Heirloom)
 * bs - Battleship game (Ported from OpenBSD)
