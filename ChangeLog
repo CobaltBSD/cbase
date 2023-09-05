@@ -1,3 +1,7 @@
+0.9 - ...
+* Set `cp -r` functionality identical to `cp -R`, allowing symlinks and
+special files to be copied properly using more conventional syntax
+
 0.8 - Sep 4 2023
 * Added the following new utilities: cp mv arch awk banner basename
 cat chroot cmp comm cut date dd diff dirname echo env expr false fold getconf
