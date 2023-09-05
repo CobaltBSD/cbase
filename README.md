@@ -11,5 +11,7 @@ cbtutils uses BSD Make and crunchgen to build. If you do not have BSD make insta
 
 Do note that cbtutils will can and will collide with a myriad of other packages, including but not limited to, libbsd, glibc and whatever core utilities you have installed. It is recommended that you DESTDIR install and then only install the parts you are interested in.
 
+Compiling one included program, `entropy`, requires [zxcvbn-c](https://github.com/tsyrogit/zxcvbn-c). You will also need to install one of the `.dict` files to `/usr/share/misc/zxcvbn.dict`.
+
 ## License
 See each source file for its licensing terms. For all other components of cbtutils, 0BSD license applies. See `LICENSE`
