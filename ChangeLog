@@ -1,3 +1,22 @@
+0.8 - Sep 4 2023
+* Added the following new utilities: cp mv arch awk banner basename
+cat chroot cmp comm cut date dd diff dirname echo env expr false fold getconf
+getopt head hostname indent jot kill ln logger logname m4 mkdir mktemp nl
+printenv printf pwd readlink realpath make rev rm rmdir seq sleep split
+tail timeout touch tr true tsort tty uname unifdef uniq unvis vis wc yacc yes
+* Removed `c89`, `c99`, `bs`, `unstr`, `primes` and `unutf`
+* Replaced Heirloom `banner` and NetBSD `rs` with OpenBSD counterparts
+* Crunched crunchgen-ng into cbtutils
+* Crunchgen mostly reimplemented as a compile-time skeleton
+* Revamped build system for OpenBSD Make, with bootstrapping for GNU Make
+* `strfile` from `fortune` is no longer installed
+* Added -z flag to `ls` man page
+* `units` now correctly flushes stdout
+* Fully moved units.lib to /usr/share/misc/
+* Removed dependency on libbsd
+* Added man page for getent(1) and entropy(1)
+* Removed useless lib9 header that conflicted with libopenbsd
+
 0.7 - Aug 21 2023
 * Add zxcvbn entropy program
 * Add c89 and c99 compatibility programs for the C compiler
@@ -47,7 +66,7 @@
 * Various other improvements
 
 0.1c - Mar 17 2023
-* Fixed README.md (again)
+* Fixed README.md
 
 0.1b - Mar 17 2023
 * Fixed README.md

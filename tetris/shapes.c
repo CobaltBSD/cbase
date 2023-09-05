@@ -41,7 +41,7 @@
  * Note that the first 7 are `well known'.
  */
 
-#include <bsd/unistd.h>
+#include <unistd.h>
 
 #include "tetris.h"
 

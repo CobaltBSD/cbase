@@ -19,13 +19,13 @@
  */
 
 #include <ctype.h>
-#include <bsd/stdio.h>
-#include <bsd/string.h>
-#include <bsd/stdlib.h>
-#include <bsd/unistd.h>
-#include <bsd/err.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <err.h>
 
-#define UNITSFILE "/usr/share/units.lib"
+#define UNITSFILE "/usr/share/misc/units.lib"
 
 #define VERSION "1.0"
 
@@ -689,6 +689,7 @@ main(int argc, char **argv)
 				initializeunit(&have);
 				if (!quiet)
 					printf("You have: ");
+				(void) fflush(stdout);
 				if (!fgets(havestr, sizeof(havestr), stdin)) {
 					if (!quiet)
 						putchar('\n');
@@ -700,6 +701,7 @@ main(int argc, char **argv)
 				initializeunit(&want);
 				if (!quiet)
 					printf("You want: ");
+				(void) fflush(stdout);
 				if (!fgets(wantstr, sizeof(wantstr), stdin)) {
 					if (!quiet)
 						putchar('\n');

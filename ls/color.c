@@ -1,7 +1,8 @@
-#include<bsd/stdio.h>
-#include<bsd/string.h>
-#include<bsd/stdlib.h>
-#include<bsd/wchar.h>
+#include<sys/stat.h>
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#include<wchar.h>
 #include<fts.h>
 
 #include"ls.h"

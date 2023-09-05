@@ -1,0 +1,43 @@
+.Dd $Mdocdate: September 4 2023 $
+.Dt ENTROPY 1
+.Os
+.Sh NAME
+.Nm entropy
+.Nd print out the entropy of stdin
+.Sh SYNOPSIS
+.Nm
+.Sh DESCRIPTION
+The
+.Nm
+program prints out the 'entropy' of a stdin. Entropy is a measure of how difficult a string would be to guess, and is used for determining how secure a password is. Generally speaking, a password with entropy less than 20-30 is weak, whereas one with sufficiently more entropy can be considered strong.
+.Pp
+Secure and easily-memorizable passwords often consist of several words and phrases, rather than a name followed by a few numbers or symbols.
+.Pp
+When using
+.Nm
+, take care to remove any lingering linebreaks as necessary, such as by using `echo -n`. Newline characters will interfere with the entropy calculation.
+.Sh EXAMPLE
+Let's compare two passwords: One is full of numbers, symbols, and is mixed case. It seems secure, but is difficult to remember. The other is longer but far easier to remember. Which one is easier to crack? Let's find out.
+.Pp
+.Nm echo -n \(dqS3cureP455W0RD42069\(dq | entropy
+.Pp
+33.165919
+.Pp
+Hmm, we've managed to only get an entropy of about 33. Realistically, this one is secure enough for most purposes, but still difficult to remember and can probably be guessed. Now, let's try a memorable phrase:
+.Pp
+.Nm echo -n \(dqGod's Drunkest Programmer\(dq | entropy
+.Pp
+78.535885
+.Pp
+Despite being only slightly longer, very easily memorizable, and containing very few mixed cases or special symbols, we've managed to achieve far higher entropy by using less common words to create a memorable phrase.
+.Pp
+The
+.Xr diceware 1
+program can be used for generating lengthy but memorable passwords.
+.El
+.Sh SEE ALSO
+.Xr diceware 1
+.Sh HISTORY
+An
+.Nm
+command first appeared in Cobalt 1.0.

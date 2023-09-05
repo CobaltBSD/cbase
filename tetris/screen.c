@@ -41,14 +41,14 @@
 
 #include <sys/ioctl.h>
 
-#include <bsd/err.h>
+#include <err.h>
 #include <setjmp.h>
 #include <signal.h>
-#include <bsd/stdio.h>
-#include <bsd/stdlib.h>
-#include <bsd/string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <term.h>
-#include <bsd/unistd.h>
+#include <unistd.h>
 
 #include "screen.h"
 #include "tetris.h"

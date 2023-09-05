@@ -39,12 +39,16 @@
  * Tetris input.
  */
 
-#include <bsd/sys/time.h>
+#define _GNU_SOURCE
+
+#include<openbsd.h>
+
+#include <sys/time.h>
 
 #include <errno.h>
 #include <poll.h>
 #include <time.h>
-#include <bsd/unistd.h>
+#include <unistd.h>
 
 #include "input.h"
 #include "tetris.h"

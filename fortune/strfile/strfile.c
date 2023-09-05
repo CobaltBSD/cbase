@@ -33,14 +33,17 @@
  * SUCH DAMAGE.
  */
 
+#include <openbsd.h>
+#include <time.h>
+
 #include <ctype.h>
-#include <bsd/err.h>
+#include <err.h>
 #include <limits.h>
 #include <stdbool.h>
-#include <bsd/stdio.h>
-#include <bsd/stdlib.h>
-#include <bsd/string.h>
-#include <bsd/unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 #include<arpa/inet.h>
 
 #include "strfile.h"
@@ -435,7 +438,10 @@ randomize(void)
 	 */
 
 	for (sp = Seekpts; cnt > 0; cnt--, sp++) {
-		i = arc4random_uniform(cnt);
+		struct timespec ts;
+		(void) clock_gettime(CLOCK_REALTIME, &ts);
+		srandom(ts.tv_nsec);
+		i = random() % cnt;
 		tmp = sp[0];
 		sp[0] = sp[i];
 		sp[i] = tmp;

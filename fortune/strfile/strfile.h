@@ -35,6 +35,8 @@
  *	@(#)strfile.h	8.1 (Berkeley) 5/31/93
  */
 
+#include<sys/types.h>
+
 #define	STR_ENDSTRING(line,tbl) \
 	((line)[0] == (tbl).str_delim && (line)[1] == '\n')
 

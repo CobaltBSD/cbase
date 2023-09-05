@@ -38,9 +38,9 @@
 
 #include <ctype.h>
 #include <fts.h>
-#include <bsd/stdio.h>
-#include <bsd/stdlib.h>
-#include <bsd/string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 #include "ls.h"
 #include "extern.h"

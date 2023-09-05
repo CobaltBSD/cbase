@@ -42,16 +42,16 @@
  *
  * Major whacks since then.
  */
-#include <bsd/err.h>
+#include <err.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <limits.h>
-#include <bsd/stdio.h>
-#include <bsd/stdlib.h>
-#include <bsd/string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <term.h>
 #include <time.h>
-#include <bsd/unistd.h>
+#include <unistd.h>
 
 #include "scores.h"
 #include "screen.h"

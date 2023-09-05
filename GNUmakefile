@@ -1,81 +1,108 @@
-PREFIX = /usr
+# Builds a standalone libopenbsd.so and make utility
 
-all:
-	make -C lib9
-	make -C libbio
-	make -C fortune/datfiles
-	crunchgen -m cbtutils-makefile cbtutils.conf 2>/dev/null
-	make -f cbtutils-makefile CFLAGS="$(CFLAGS) -I$(PWD)/p9include"
+CFLAGS := -Llibopenbsd -lopenbsd -Ilibopenbsd
+
+PREFIX := /usr
+
+MAGICVARSLOTS=82
+MAGICCONDSLOTS=65
+
+all: make/make
+
+libopenbsd/libopenbsd.so:
+	$(CC) -fPIC -shared -Ilibopenbsd \
+		libopenbsd/pledge.c \
+		libopenbsd/getprogname.c \
+		libopenbsd/strtonum.c \
+		libopenbsd/pwcache.c \
+		libopenbsd/setmode.c \
+		libopenbsd/warnc.c \
+		libopenbsd/vwarnc.c \
+		libopenbsd/strtofflags.c \
+		libopenbsd/fts.c \
+		libopenbsd/malloc.c \
+		libopenbsd/errc.c \
+		libopenbsd/verrc.c \
+		libopenbsd/logwtmp.c \
+		libopenbsd/getbsize.c \
+		libopenbsd/fmt_scaled.c \
+		libopenbsd/siphash.c \
+		libopenbsd/srandom_deterministic.c \
+		libopenbsd/ohash.c \
+		libopenbsd/db.c \
+		libopenbsd/hash.c \
+		libopenbsd/hash_bigkey.c \
+		libopenbsd/hash_buf.c \
+		libopenbsd/hash_func.c \
+		libopenbsd/hash_log2.c \
+		libopenbsd/hash_page.c \
+		libopenbsd/ndbm.c \
+		libopenbsd/base64.c \
+		libopenbsd/vis.c \
+		libopenbsd/unvis.c \
+		libopenbsd/strmode.c \
+		-o $@
+
+make/generate: libopenbsd/libopenbsd.so
+	$(CC) make/generate.c make/stats.c make/memory.c $(CFLAGS) -o $@
+
+make/varhashconsts.h: make/generate
+	LD_LIBRARY_PATH=libopenbsd ./make/generate 1 ${MAGICVARSLOTS} > $@
+
+make/condhashconsts.h: make/generate
+	LD_LIBRARY_PATH=libopenbsd ./make/generate 2 ${MAGICCONDSLOTS} > $@
+
+make/nodehashconsts.h: make/generate
+	LD_LIBRARY_PATH=libopenbsd ./make/generate 3 0 > $@
+
+make/make: make/varhashconsts.h make/condhashconsts.h make/nodehashconsts.h
+	$(CC) \
+		make/main.c \
+		make/arch.c \
+		make/buf.c \
+		make/cmd_exec.c \
+		make/compat.c \
+		make/cond.c \
+		make/dir.c \
+		make/direxpand.c \
+		make/dump.c \
+		make/engine.c \
+		make/enginechoice.c \
+		make/error.c \
+		make/expandchildren.c \
+		make/for.c \
+		make/init.c \
+		make/job.c \
+		make/lowparse.c \
+		make/make.c \
+		make/parse.c \
+		make/parsevar.c \
+		make/str.c \
+		make/suff.c \
+		make/targ.c \
+		make/targequiv.c \
+		make/timestamp.c \
+		make/var.c \
+		make/varmodifiers.c \
+		make/varname.c \
+		make/memory.c \
+		make/stats.c \
+		make/lst.lib/lstAddNew.c \
+		make/lst.lib/lstAppend.c \
+		make/lst.lib/lstConcat.c \
+		make/lst.lib/lstConcatDestroy.c \
+		make/lst.lib/lstDeQueue.c \
+		make/lst.lib/lstDestroy.c \
+		make/lst.lib/lstDupl.c \
+		make/lst.lib/lstFindFrom.c \
+		make/lst.lib/lstForEachFrom.c \
+		make/lst.lib/lstInsert.c \
+		make/lst.lib/lstMember.c \
+		make/lst.lib/lstRemove.c \
+		make/lst.lib/lstReplace.c \
+		make/lst.lib/lstRequeue.c \
+		make/lst.lib/lstSucc.c \
+		-Imake $(CFLAGS) -o $@
 
 clean:
-	make -C lib9 clean
-	make -C libbio clean
-	find -name "*.o" -delete
-	rm -fv *_stub.c
-	rm -fv *.lo
-	rm -fv cbtutils
-	rm -fv cbtutils.c
-	rm -fv cbtutils.cache
-	rm -fv cbtutils-makefile
-
-install:
-	mkdir -pv $(DESTDIR)$(PREFIX)/bin
-	cp -v cbtutils $(DESTDIR)$(PREFIX)/bin
-	ln -sf cbtutils $(DESTDIR)$(PREFIX)/bin/banner
-	ln -sf cbtutils $(DESTDIR)$(PREFIX)/bin/bs
-	ln -sf cbtutils $(DESTDIR)$(PREFIX)/bin/fortune
-	ln -sf cbtutils $(DESTDIR)$(PREFIX)/bin/strfile
-	ln -sf cbtutils $(DESTDIR)$(PREFIX)/bin/unstr
-	ln -sf cbtutils $(DESTDIR)$(PREFIX)/bin/freq
-	ln -sf cbtutils $(DESTDIR)$(PREFIX)/bin/grdc
-	ln -sf cbtutils $(DESTDIR)$(PREFIX)/bin/locale
-	ln -sf cbtutils $(DESTDIR)$(PREFIX)/bin/ls
-	ln -sf cbtutils $(DESTDIR)$(PREFIX)/bin/news
-	ln -sf cbtutils $(DESTDIR)$(PREFIX)/bin/number
-	ln -sf cbtutils $(DESTDIR)$(PREFIX)/bin/primes
-	ln -sf cbtutils $(DESTDIR)$(PREFIX)/bin/rs
-	ln -sf cbtutils $(DESTDIR)$(PREFIX)/bin/tetris
-	ln -sf cbtutils $(DESTDIR)$(PREFIX)/bin/unicode
-	ln -sf cbtutils $(DESTDIR)$(PREFIX)/bin/units
-	ln -sf cbtutils $(DESTDIR)$(PREFIX)/bin/unutf
-	ln -sf cbtutils $(DESTDIR)$(PREFIX)/bin/getent
-	ln -sf cbtutils $(DESTDIR)$(PREFIX)/bin/c89
-	ln -sf cbtutils $(DESTDIR)$(PREFIX)/bin/c99
-	ln -sf cbtutils $(DESTDIR)$(PREFIX)/bin/entropy
-	mkdir -pv $(DESTDIR)$(PREFIX)/share/man/man1
-	mkdir -pv $(DESTDIR)$(PREFIX)/share/man/man6
-	cp -v banner/banner.1 "$(DESTDIR)$(PREFIX)/share/man/man1"
-	cp -v bs/bs.6 "$(DESTDIR)$(PREFIX)/share/man/man6"
-	cp -v fortune/strfile/strfile.1 "$(DESTDIR)$(PREFIX)/share/man/man1"
-	cp -v fortune/fortune/fortune.6 "$(DESTDIR)$(PREFIX)/share/man/man6"
-	cp -v freq/freq.1 "$(DESTDIR)$(PREFIX)/share/man/man1"
-	cp -v grdc/grdc.6 "$(DESTDIR)$(PREFIX)/share/man/man6"
-	cp -v locale/locale.1 "$(DESTDIR)$(PREFIX)/share/man/man1"
-	cp -v ls/ls.1 "$(DESTDIR)$(PREFIX)/share/man/man1"
-	cp -v news/news.1 "$(DESTDIR)$(PREFIX)/share/man/man1"
-	cp -v number/number.6 "$(DESTDIR)$(PREFIX)/share/man/man6"
-	cp -v rs/rs.1 "$(DESTDIR)$(PREFIX)/share/man/man1"
-	cp -v tetris/tetris.6 "$(DESTDIR)$(PREFIX)/share/man/man6"
-	cp -v unicode/unicode.1 "$(DESTDIR)$(PREFIX)/share/man/man1"
-	cp -v units/units.1 "$(DESTDIR)$(PREFIX)/share/man/man1"
-	cp -v c89/c89.1 "$(DESTDIR)$(PREFIX)/share/man/man1"
-	cp -v c99/c99.1 "$(DESTDIR)$(PREFIX)/share/man/man1"
-	mkdir -pv $(DESTDIR)$(PREFIX)/share/fortunes
-	cp -v fortune/datfiles/fortunes $(DESTDIR)$(PREFIX)/share/fortunes
-	cp -v fortune/datfiles/fortunes-o $(DESTDIR)$(PREFIX)/share/fortunes
-	cp -v fortune/datfiles/fortunes2 $(DESTDIR)$(PREFIX)/share/fortunes
-	cp -v fortune/datfiles/fortunes2-o $(DESTDIR)$(PREFIX)/share/fortunes
-	cp -v fortune/datfiles/startrek $(DESTDIR)$(PREFIX)/share/fortunes
-	cp -v fortune/datfiles/zippy $(DESTDIR)$(PREFIX)/share/fortunes
-	cp -v fortune/datfiles/recipes $(DESTDIR)$(PREFIX)/share/fortunes
-	cp -v fortune/datfiles/limerick $(DESTDIR)$(PREFIX)/share/fortunes
-	cp -v fortune/datfiles/fortunes.dat $(DESTDIR)$(PREFIX)/share/fortunes
-	cp -v fortune/datfiles/fortunes-o.dat $(DESTDIR)$(PREFIX)/share/fortunes
-	cp -v fortune/datfiles/fortunes2.dat $(DESTDIR)$(PREFIX)/share/fortunes
-	cp -v fortune/datfiles/fortunes2-o.dat $(DESTDIR)$(PREFIX)/share/fortunes
-	cp -v fortune/datfiles/startrek.dat $(DESTDIR)$(PREFIX)/share/fortunes
-	cp -v fortune/datfiles/zippy.dat $(DESTDIR)$(PREFIX)/share/fortunes
-	cp -v fortune/datfiles/recipes.dat $(DESTDIR)$(PREFIX)/share/fortunes
-	cp -v fortune/datfiles/limerick.dat $(DESTDIR)$(PREFIX)/share/fortunes
-	mkdir -pv "$(DESTDIR)$(PREFIX)/share/news"
-	cp -v units/units.lib "$(DESTDIR)$(PREFIX)/share"
+	rm -fv libopenbsd/libopenbsd.so make/generate make/varhashconsts.h make/condhashconsts.h make/nodehashconsts.h make/make

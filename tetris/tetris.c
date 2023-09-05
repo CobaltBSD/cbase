@@ -39,14 +39,17 @@
  * Tetris (or however it is spelled).
  */
 
-#include <bsd/err.h>
+#include <openbsd.h>
+#include <time.h>
+
+#include <err.h>
 #include <errno.h>
 #include <limits.h>
 #include <signal.h>
-#include <bsd/stdio.h>
-#include <bsd/stdlib.h>
-#include <bsd/string.h>
-#include <bsd/unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 
 #include "input.h"
 #include "scores.h"
@@ -70,6 +73,13 @@ void			 onintr(int);
 const struct shape	*randshape(void);
 static void		 setup_board(void);
 void		 usage(void);
+
+uint32_t arc4random_uniform(uint32_t upper_bound) {
+	struct timespec ts;
+	(void) clock_gettime(CLOCK_REALTIME, &ts);
+	srandom(ts.tv_nsec);
+	return random() % upper_bound;
+}
 
 /*
  * Set up the initial board.  The bottom display row is completely set,

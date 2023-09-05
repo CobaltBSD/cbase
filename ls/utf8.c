@@ -17,9 +17,9 @@
  */
 
 #ifndef SMALL
-#include <bsd/stdio.h>
-#include <bsd/stdlib.h>
-#include <bsd/wchar.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <wchar.h>
 #include<fts.h>
 
 extern int f_nonprint;

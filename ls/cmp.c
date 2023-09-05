@@ -37,7 +37,7 @@
 #include <sys/stat.h>
 
 #include <fts.h>
-#include <bsd/string.h>
+#include <string.h>
 
 #include "ls.h"
 #include "extern.h"

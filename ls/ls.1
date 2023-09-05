@@ -41,7 +41,7 @@
 .Nd list directory contents
 .Sh SYNOPSIS
 .Nm ls
-.Op Fl 1AaCcdFfgHhikLlmnopqRrSsTtux
+.Op Fl 1AaCcdFfgHhikLlmnopqRrSsTtuxz
 .Op Ar
 .Sh DESCRIPTION
 For each operand that names a
@@ -233,6 +233,8 @@ or
 .Fl n ) .
 .It Fl x
 Multi-column output sorted across the page rather than down the page.
+.It Fl z
+Color-code files.
 .El
 .Pp
 It is not an error to specify more than one of

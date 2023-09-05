@@ -36,10 +36,10 @@
  * Scanning code written for OpenBSD libutil.
  */
 
-#include <bsd/stdio.h>
-#include <bsd/stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <errno.h>
-#include <bsd/string.h>
+#include <string.h>
 #include <ctype.h>
 #include <limits.h>
 

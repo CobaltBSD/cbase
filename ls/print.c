@@ -33,26 +33,27 @@
  * SUCH DAMAGE.
  */
 
+#include<openbsd.h>
+
 #include <sys/types.h>
 #include <sys/stat.h>
 
-#include <bsd/err.h>
+#include <err.h>
 #include <errno.h>
 #include <fts.h>
-#include <bsd/grp.h>
-#include <bsd/pwd.h>
-#include <bsd/stdio.h>
-#include <bsd/stdlib.h>
-#include <bsd/string.h>
+#include <grp.h>
+#include <pwd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <time.h>
-#include <bsd/unistd.h>
+#include <unistd.h>
 #include <limits.h>
-#include <bsd/sys/param.h>
+#include <sys/param.h>
 #include <sys/sysmacros.h>
 
 #include "ls.h"
 #include "extern.h"
-#include "obsdutil.h"
 #include "color.h"
 
 static int	printaname(FTSENT *, int, int);
@@ -106,7 +107,7 @@ printlong(DISPLAY *dp)
 			    howmany((long long)sp->st_blocks, blocksize));
 		(void)strmode(sp->st_mode, buf);
 		np = p->fts_pointer;
-		(void)printf("%s %*u ", buf, dp->s_nlink, sp->st_nlink);
+		(void)printf("%s %*lu ", buf, dp->s_nlink, sp->st_nlink);
 		if (!f_grouponly)
 			(void)printf("%-*s  ", dp->s_user, np->user);
 		(void)printf("%-*s  ", dp->s_group, np->group);

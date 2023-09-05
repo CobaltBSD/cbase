@@ -11,18 +11,22 @@
  * 10-18-89 added signal handling
  */
 
+#define _GNU_SOURCE
+
+#include <openbsd.h>
+
 #include <sys/ioctl.h>
 
 #include <curses.h>
-#include <bsd/err.h>
+#include <err.h>
 #include <limits.h>
 #include <poll.h>
 #include <signal.h>
-#include <bsd/stdio.h>
-#include <bsd/stdlib.h>
-#include <bsd/string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <time.h>
-#include <bsd/unistd.h>
+#include <unistd.h>
 
 #define XLENGTH 58
 #define YDEPTH  7

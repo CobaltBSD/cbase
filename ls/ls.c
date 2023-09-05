@@ -33,23 +33,24 @@
  * SUCH DAMAGE.
  */
 
+#include<openbsd.h>
+
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <sys/ioctl.h>
 
 #include <dirent.h>
-#include <bsd/err.h>
+#include <err.h>
 #include <errno.h>
 #include <fts.h>
-#include <bsd/grp.h>
-#include <bsd/pwd.h>
-#include <bsd/stdio.h>
-#include <bsd/stdlib.h>
-#include <bsd/string.h>
-#include <bsd/unistd.h>
+#include <grp.h>
+#include <pwd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 #include <limits.h>
 #include <locale.h>
-#include "obsdutil.h"
 
 #include "ls.h"
 #include "extern.h"

@@ -33,25 +33,28 @@
  * SUCH DAMAGE.
  */
 
+#include<openbsd.h>
+#include<time.h>
+
 #include <sys/stat.h>
 
 #include <assert.h>
 #include <ctype.h>
 #include <dirent.h>
-#include <bsd/err.h>
+#include <err.h>
 #include <fcntl.h>
 #include <limits.h>
 #include <locale.h>
 #include <stdbool.h>
-#include <bsd/stdio.h>
-#include <bsd/stdlib.h>
-#include <bsd/string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <regex.h>
-#include <bsd/unistd.h>
+#include <unistd.h>
 #include<arpa/inet.h>
 
 #include "pathnames.h"
-#include "strfile.h"
+#include "../strfile/strfile.h"
 
 #define	MINW	6		/* minimum wait if desired */
 #define	CPERS	20		/* # of chars for each sec */
@@ -67,6 +70,13 @@
 #define	DPRINTF(l,x)
 #define	NDEBUG	1
 #endif
+
+uint32_t arc4random_uniform(uint32_t upper_bound) {
+	struct timespec ts;
+	(void) clock_gettime(CLOCK_REALTIME, &ts);
+	srandom(ts.tv_nsec);
+	return random() % upper_bound;
+}
 
 typedef struct fd {
 	int		percent;
@@ -212,7 +222,7 @@ display(FILEDESC *fp)
 	    !STR_ENDSTRING(line, fp->tbl); Fort_len++) {
 		if (fp->tbl.str_flags & STR_ROTATED)
 			rot13(line, strlen(line));
-		sanitize(line);
+		sanitize((unsigned char*) line);
 		fputs(line, stdout);
 	}
 	(void) fflush(stdout);
@@ -1200,7 +1210,7 @@ matches_in_list(FILEDESC *list)
 						in_file = 1;
 					}
 					putchar('\n');
-					sanitize(Fortbuf);
+					sanitize((unsigned char*) Fortbuf);
 					(void) fwrite(Fortbuf, 1, (sp - Fortbuf), stdout);
 				}
 				sp = Fortbuf;
