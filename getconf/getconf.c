@@ -40,7 +40,7 @@
  *	J.T. Conklin (jtc@wimsey.com), Winning Strategies, Inc.
  */
 
-#include"openbsd.h"
+#include<openbsd.h>
 
 #include <err.h>
 #include <errno.h>

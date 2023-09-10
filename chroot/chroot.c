@@ -29,7 +29,7 @@
  * SUCH DAMAGE.
  */
 
-#include"openbsd.h"
+#include<openbsd.h>
 
 #include <sys/types.h>
 #include <ctype.h>
@@ -37,7 +37,6 @@
 #include <errno.h>
 #include <grp.h>
 #include <limits.h>
-//#include <login_cap.h>
 #include <paths.h>
 #include <pwd.h>
 #include <stdio.h>

@@ -30,7 +30,7 @@
 
 #define _GNU_SOURCE
 
-#include"openbsd.h"
+#include<openbsd.h>
 #include<errno.h>
 
 #include <err.h>

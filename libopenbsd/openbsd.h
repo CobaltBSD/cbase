@@ -141,8 +141,6 @@ void *setmode(const char *p);
 
 long long strtonum(const char *nptr, long long minval, long long maxval, const char **errstr);
 
-//intmax_t strtoi(const char *__restrict nptr, char **__restrict endptr, int base, intmax_t lo, intmax_t hi, int *rstatus);
-
 int uid_from_user(const char *name, uid_t *uid);
 
 int gid_from_group(const char *name, gid_t *gid);
@@ -150,8 +148,6 @@ int gid_from_group(const char *name, gid_t *gid);
 void warnc(int code, const char *format, ...);
 
 void vwarnc(int code, const char *fmt, va_list ap);
-
-int strtofflags(char **stringp, u_int32_t *setp, u_int32_t *clrp);
 
 int chflags(const char *path, unsigned int flags);
 
@@ -165,17 +161,6 @@ void errc(int eval, int code, const char *fmt, ...);
 int unveil(const char *path, const char *permissions);
 
 char *getbsize(int *headerlenp, long *blocksizep);
-
-// Redirects to srandom
-void srandom_deterministic(unsigned int seed);
-
-DB *__hash_open(const char *file, int flags, int mode, const HASHINFO *info, int dflags);
-
-DB *__rec_open(const char *fname, int flags, int mode, const RECNOINFO *openinfo, int dflags);
-
-DB *__bt_open(const char *fname, int flags, int mode, const BTREEINFO *openinfo, int dflags);
-
-u_int32_t	__default_hash(const void *, size_t);
 
 #define EFTYPE		79
 
@@ -202,10 +187,6 @@ u_int32_t	__default_hash(const void *, size_t);
 	((char *)&(b))[1] = ((char *)&(a))[0];				\
 }
 
-int b64_ntop(unsigned char const *src, size_t srclength, char *target, size_t targsize);
-
-int b64_pton(char const *src, unsigned char *target, size_t targsize);
-
 void strmode(int mode, char *p);
 
 const char *user_from_uid(uid_t uid, int noname);
@@ -217,3 +198,7 @@ const char *group_from_gid(gid_t gid, int noname);
 #define FMT_SCALED_STRSIZE 7
 
 int fmt_scaled(long long number, char *result);
+
+int radixsort(const u_char **a, int n, const u_char *tab, u_int endch);
+
+int sradixsort(const u_char **a, int n, const u_char *tab, u_int endch);

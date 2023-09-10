@@ -32,7 +32,7 @@
  * SUCH DAMAGE.
  */
 
-#include"openbsd.h"
+#include<openbsd.h>
 
 #include <fcntl.h>
 #include <unistd.h>

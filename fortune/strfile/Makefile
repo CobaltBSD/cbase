@@ -3,7 +3,7 @@
 #	@(#)Makefile	8.1 (Berkeley) 5/31/93
 
 all:
-	${CC} strfile.c -o strfile
+	${CC} -I../../libopenbsd strfile.c -o strfile
 
 clean:
 	rm -fv strfile

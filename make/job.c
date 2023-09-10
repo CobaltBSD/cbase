@@ -82,7 +82,7 @@
  *	Job_Wait		Wait for all running jobs to finish.
  */
 
-#include"openbsd.h"
+#include<openbsd.h>
 
 #include <sys/types.h>
 #include <sys/wait.h>

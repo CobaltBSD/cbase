@@ -29,7 +29,7 @@
  * SUCH DAMAGE.
  */
 
-#include"openbsd.h"
+#include<openbsd.h>
 
 #include <sys/stat.h>
 

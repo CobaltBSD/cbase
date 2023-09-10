@@ -29,7 +29,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include"openbsd.h"
+#include<openbsd.h>
 
 #include <ctype.h>
 #include <err.h>

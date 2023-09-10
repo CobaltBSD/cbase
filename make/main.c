@@ -35,7 +35,7 @@
  * SUCH DAMAGE.
  */
 
-#include"openbsd.h"
+#include<openbsd.h>
 
 #include <sys/param.h>	/* MACHINE MACHINE_ARCH */
 #include <sys/types.h>

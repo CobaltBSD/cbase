@@ -5,7 +5,7 @@
  * into the public domain and is thus not subject to any copyright.
  */
 
-#include"openbsd.h"
+#include<openbsd.h>
 
 #include <stdio.h>
 #include <stdlib.h>

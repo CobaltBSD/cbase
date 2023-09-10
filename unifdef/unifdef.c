@@ -43,7 +43,7 @@
  *   it possible to handle all "dodgy" directives correctly.
  */
 
-#include"openbsd.h"
+#include<openbsd.h>
 
 #include <sys/stat.h>
 

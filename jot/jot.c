@@ -36,7 +36,7 @@
  * Author:  John Kunze, Office of Comp. Affairs, UCB
  */
 
-#include"openbsd.h"
+#include<openbsd.h>
 #include<time.h>
 
 #include <ctype.h>

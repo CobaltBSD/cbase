@@ -23,7 +23,7 @@ ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF
 THIS SOFTWARE.
 ****************************************************************/
 
-#include"openbsd.h"
+#include<openbsd.h>
 
 #include <stdio.h>
 #include <ctype.h>
@@ -1750,7 +1750,7 @@ Cell *bltin(Node **a, int n)	/* builtin functions. a[0] is type, a[1] is arg lis
 		} else {
 			u = getfval(x);
 			tmp = u;
-			srandom_deterministic((unsigned int) u);
+			srandom((unsigned int) u);
 		}
 		u = srand_seed;
 		srand_seed = tmp;

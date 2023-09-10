@@ -30,7 +30,7 @@
  * SUCH DAMAGE.
  */
 
-#include"openbsd.h"
+#include<openbsd.h>
 #include<sys/statfs.h>
 
 #include <sys/types.h>

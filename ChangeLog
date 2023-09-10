@@ -1,6 +1,15 @@
-0.9 - ...
+0.9 - Sep 9 2023
 * Set `cp -r` functionality identical to `cp -R`, allowing symlinks and
 special files to be copied properly using more conventional syntax
+* Disabled some useless or broken functionality in libopenbsd
+* Fixed memory corruption in siphash.c
+* Removed srandom_deterministic
+* Added base64, icdb, radixsort, md5, rmd160, sha1 and sha2 to libopenbsd
+* Cleaned up libopenbsd makefile
+* Removed dead symbols from openbsd.h
+* Fixed build system
+* Removed `yacc` in favor of Berkeley YACC
+* Added `version` utility
 
 0.8 - Sep 4 2023
 * Added the following new utilities: cp mv arch awk banner basename

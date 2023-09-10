@@ -46,7 +46,6 @@
 #include<string.h>
 
 #include <sys/param.h>
-//#include <sys/systm.h>
 
 #include"siphash.h"
 
@@ -58,8 +57,8 @@ SipHash_Init(SIPHASH_CTX *ctx, const SIPHASH_KEY *key)
 {
 	uint64_t k0, k1;
 
-	k0 = letoh64(&key->k0);
-	k1 = letoh64(&key->k1);
+	k0 = letoh64(key->k0);
+	k1 = letoh64(key->k1);
 
 	ctx->v[0] = 0x736f6d6570736575ULL ^ k0;
 	ctx->v[1] = 0x646f72616e646f6dULL ^ k1;
@@ -175,7 +174,8 @@ SipHash_Rounds(SIPHASH_CTX *ctx, int rounds)
 static void
 SipHash_CRounds(SIPHASH_CTX *ctx, int rounds)
 {
-	uint64_t m = letoh64((uint64_t *)ctx->buf);
+	uint64_t m = 0;
+	(void) memcpy(&m, ctx->buf, sizeof(uint64_t));
 
 	ctx->v[3] ^= m;
 	SipHash_Rounds(ctx, rounds);

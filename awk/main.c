@@ -23,7 +23,7 @@ ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF
 THIS SOFTWARE.
 ****************************************************************/
 
-#include"openbsd.h"
+#include<openbsd.h>
 
 const char	*version = "version 20220912";
 

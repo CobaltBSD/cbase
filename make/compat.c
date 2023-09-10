@@ -35,7 +35,7 @@
  * SUCH DAMAGE.
  */
 
-#include"openbsd.h"
+#include<openbsd.h>
 #include<time.h>
 
 #include <limits.h>
