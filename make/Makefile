@@ -18,7 +18,7 @@ nodehashconsts.h: generate
 	${.OBJDIR}/generate 3 0 >$@.tmp && mv $@.tmp $@
 
 generate: generate.c stats.c memory.c
-	${CC} -I../libopenbsd -o ${.TARGET} ${.ALLSRC}
+	${CC} -I../libcobalt -o ${.TARGET} ${.ALLSRC}
 
 all: varhashconsts.h condhashconsts.h nodehashconsts.h
 

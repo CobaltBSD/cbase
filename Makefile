@@ -11,6 +11,7 @@ clean:
 	${MAKE} -C m4 clean
 	${MAKE} -C awk clean
 	${MAKE} -C make clean
+	${MAKE} -C doas clean
 	gmake -C lib9 clean
 	gmake -C libbio clean
 	make -C getent
@@ -18,9 +19,9 @@ clean:
 .include <bsd.prog.mk>
 
 # crunchgen handles these directories for the most part, but including them here is still useful for installation or generating additional source files.
-SUBDIR=	libopenbsd cp mv make fortune grdc locale ls number tetris units arch awk banner basename cat chroot cmp comm cut date dd diff dirname echo env expr false fold getconf getopt head hostname indent jot kill ln logger logname m4 mkdir mktemp nl printenv printf pwd readlink realpath rev rm rmdir rs seq sleep split tail timeout touch tr true tsort tty uname unifdef uniq unvis vis wc yes freq news unicode getent entropy version
+SUBDIR=	libcobalt cp mv make fortune grdc locale ls number tetris units arch awk banner basename cat chroot cmp comm cut date dd diff dirname echo env expr false fold getconf getopt head hostname indent jot kill ln logger logname m4 mkdir mktemp nl printenv printf pwd readlink realpath rev rm rmdir rs seq sleep split tail timeout touch tr true tsort tty uname unifdef uniq unvis vis wc yes freq news unicode getent entropy doas version
 
-CFLAGS += -Ip9include -Llib9 -l9 -Llibbio -lbio -lzxcvbn -Ilibopenbsd
+CFLAGS += -Ip9include -Llib9 -l9 -Llibbio -lbio -lzxcvbn -Ilibcobalt -Llibcobalt
 
 all: ${SUBDIR} fortune/strfile fortune/datfiles
 	gmake -C lib9
@@ -29,6 +30,7 @@ all: ${SUBDIR} fortune/strfile fortune/datfiles
 	$(MAKE) CFLAGS="${CFLAGS}" -f cbtutils-makefile
 
 install: ${SUBDIR} fortune/datfiles
+	${MAKE} -C libcobalt includes
 	install -D crunchgen/cbtutils ${DESTDIR}${BINDIR}/cbtutils
 	mkdir -p ${DESTDIR}${SBINDIR}
 	ln -sf cbtutils ${DESTDIR}${BINDIR}/cp
@@ -108,7 +110,7 @@ install: ${SUBDIR} fortune/datfiles
 	mkdir -p ${DESTDIR}/usr/share/news
 	cp -rf make/mk ${DESTDIR}/usr/share/
 
-#TODO: install libopenbsd headers
+#TODO: install libcobalt headers
 #TODO: other bsd man pages?
 
 .include <bsd.subdir.mk>
