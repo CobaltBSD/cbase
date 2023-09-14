@@ -1,4 +1,4 @@
-0.10 - ...
+0.10 - Sep 14 2023
 * Removed `news`
 * `unicode` and `freq` rewritten without Plan9 libraries
 * Reworked `unicode` and `freq` man pages
