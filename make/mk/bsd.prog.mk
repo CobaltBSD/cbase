@@ -25,10 +25,10 @@ CFLAGS+=	${COPTS}
 CXXFLAGS+=     ${CXXOPTS}
 
 #CRTBEGIN?=       ${DESTDIR}/usr/lib/crtbegin.o
-CRTBEGIN?=        ${DESTDIR}/usr/lib/clang/15.0.7/lib/linux/clang_rt.crtbegin-x86_64.o
+#CRTBEGIN?=        ${DESTDIR}/usr/lib/clang/15.0.7/lib/linux/clang_rt.crtbegin-x86_64.o
 #clang_rt.crtbegin-x86_64.o
 #CRTEND?=         ${DESTDIR}/usr/lib/crtend.o
-CRTEND?=        ${DESTDIR}/usr/lib/clang/15.0.7/lib/linux/clang_rt.crtend-x86_64.o
+#CRTEND?=        ${DESTDIR}/usr/lib/clang/15.0.7/lib/linux/clang_rt.crtend-x86_64.o
 
 LIBCRT1?=	${DESTDIR}/usr/lib/crt1.o
 LIBC?=		${DESTDIR}/usr/lib/libc.a
@@ -160,8 +160,8 @@ realinstall:
 .  endif
 .  if defined(PROGS)
 .    for p in ${PROGS}
+	mkdir -p ${DESTDIR}${BINDIR}
 	${INSTALL} ${INSTALL_COPY} ${INSTALL_STRIP} \
-	    -o ${BINOWN} -g ${BINGRP} \
 	    -m ${BINMODE} $p ${DESTDIR}${BINDIR}/$p
 .    endfor
 .  endif

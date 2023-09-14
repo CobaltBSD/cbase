@@ -305,8 +305,9 @@ setfile(struct stat *fs, int fd)
 	}
 	if (fd >= 0 ? fchmod(fd, fs->st_mode) :
 	    fchmodat(AT_FDCWD, to.p_path, fs->st_mode, AT_SYMLINK_NOFOLLOW)) {
-		warn("chmod: %s", to.p_path);
-		rval = 1;
+		// Symlinks create harmless errors when attempting to copy
+		//warn("chmod: %s", to.p_path);
+		//rval = 1;
 	}
 
 	return (rval);

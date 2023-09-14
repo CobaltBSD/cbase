@@ -149,10 +149,10 @@ CXXFLAGS+=	${CXXOPTS}
 
 DEBUG?=	-g
 
-_LIBS=lib${LIB}.a
-.if !defined(NOPROFILE)
-_LIBS+=lib${LIB}_p.a
-.endif
+#_LIBS=lib${LIB}.a
+#.if !defined(NOPROFILE)
+#_LIBS+=lib${LIB}_p.a
+#.endif
 
 .if !defined(NOPIC)
 .if defined(SHLIB_MAJOR) && defined(SHLIB_MINOR)
@@ -160,14 +160,14 @@ FULLSHLIBNAME=lib${LIB}.so.${SHLIB_MAJOR}.${SHLIB_MINOR}
 _LIBS+=${FULLSHLIBNAME}
 .endif
 
-.if defined(LIBREBUILD)
-_LIBS+=${FULLSHLIBNAME}.a
+#.if defined(LIBREBUILD)
+#_LIBS+=${FULLSHLIBNAME}.a
 
-.if exists(${.CURDIR}/Symbols.list)
-SYMBOLSMAP=Symbols.map
-.endif
+#.if exists(${.CURDIR}/Symbols.list)
+#SYMBOLSMAP=Symbols.map
+#.endif
 
-.endif
+#.endif
 
 .if defined(VERSION_SCRIPT)
 ${FULLSHLIBNAME}:	${VERSION_SCRIPT}
@@ -187,20 +187,20 @@ _YACCINTM?=${SRCS:M*.y:.y=.c}
 
 BUILDAFTER += ${OBJS}
 
-lib${LIB}.a: ${OBJS}
-	@echo building standard ${LIB} library
-	@rm -f lib${LIB}.a
-	@${AR} cqD lib${LIB}.a `echo ${OBJS} | tsort -q`
-	${RANLIB} lib${LIB}.a
+#lib${LIB}.a: ${OBJS}
+#	@echo building standard ${LIB} library
+#	@rm -f lib${LIB}.a
+#	@${AR} cqD lib${LIB}.a `echo ${OBJS} | tsort -q`
+#	${RANLIB} lib${LIB}.a
 
 POBJS+=	${OBJS:.o=.po}
 BUILDAFTER += ${POBJS}
 
-lib${LIB}_p.a: ${POBJS}
-	@echo building profiled ${LIB} library
-	@rm -f lib${LIB}_p.a
-	@${AR} cqD lib${LIB}_p.a `echo ${POBJS} | tsort -q`
-	${RANLIB} lib${LIB}_p.a
+#lib${LIB}_p.a: ${POBJS}
+#	@echo building profiled ${LIB} library
+#	@rm -f lib${LIB}_p.a
+#	@${AR} cqD lib${LIB}_p.a `echo ${POBJS} | tsort -q`
+#	${RANLIB} lib${LIB}_p.a
 
 SOBJS+=	${OBJS:.o=.so}
 BUILDAFTER += ${SOBJS}
@@ -224,12 +224,13 @@ ${FULLSHLIBNAME}: ${SOBJS} ${DPADD}
 	${CC} -shared -Wl,-soname,${FULLSHLIBNAME} ${PICFLAG} -o ${.TARGET} \
 	    `echo ${SOBJS} | tr ' ' '\n' | sort` ${LDADD}
 .endif
+	ln -s ${FULLSHLIBNAME} lib${LIB}.so
 
-${FULLSHLIBNAME}.a: ${SOBJS}
-	@echo building shared ${LIB} library \(version ${SHLIB_MAJOR}.${SHLIB_MINOR}\) ar
-	@rm -f ${.TARGET}
-	@echo -Wl,-soname,${FULLSHLIBNAME} ${PICFLAG} ${LDADD} > .ldadd
-	ar cqD ${FULLSHLIBNAME}.a ${SOBJS} .ldadd ${SYMBOLSMAP}
+#${FULLSHLIBNAME}.a: ${SOBJS}
+#	@echo building shared ${LIB} library \(version ${SHLIB_MAJOR}.${SHLIB_MINOR}\) ar
+#	@rm -f ${.TARGET}
+#	@echo -Wl,-soname,${FULLSHLIBNAME} ${PICFLAG} ${LDADD} > .ldadd
+#	ar cqD ${FULLSHLIBNAME}.a ${SOBJS} .ldadd ${SYMBOLSMAP}
 
 # all .do files...
 DOBJS+=	${OBJS:.o=.do}
@@ -242,25 +243,26 @@ SELECTED_DOBJS=${DIST_OBJS:.o=.do}
 SELECTED_DOBJS?=${DOBJS}
 .endif
 
-DIST_LIB?=lib${LIB}_d.a
-${DIST_LIB}: ${SELECTED_DOBJS}
-	@echo building distrib ${DIST_LIB} library from ${SELECTED_DOBJS}
-	@rm -f ${DIST_LIB}
-.if !empty(SELECTED_DOBJS)
-	@${AR} cqD ${DIST_LIB} `${LORDER} ${SELECTED_DOBJS} | tsort -q`
-.else
-	@${AR} cqD ${DIST_LIB}
-.endif
-	${RANLIB} ${DIST_LIB}
+#DIST_LIB?=lib${LIB}_d.a
+#${DIST_LIB}: ${SELECTED_DOBJS}
+#	@echo building distrib ${DIST_LIB} library from ${SELECTED_DOBJS}
+#	@rm -f ${DIST_LIB}
+#.if !empty(SELECTED_DOBJS)
+#	@${AR} cqD ${DIST_LIB} `${LORDER} ${SELECTED_DOBJS} | tsort -q`
+#.else
+#	@${AR} cqD ${DIST_LIB}
+#.endif
+#	${RANLIB} ${DIST_LIB}
 
 .if !target(clean)
 clean: _SUBDIRUSE
 	rm -f a.out [Ee]rrs mklog *.core y.tab.h \
 	    ${_LEXINTM} ${_YACCINTM} ${CLEANFILES}
-	rm -f lib${LIB}.a ${OBJS}
-	rm -f lib${LIB}_g.a ${GOBJS}
-	rm -f lib${LIB}_p.a ${POBJS}
+#	rm -f lib${LIB}.a ${OBJS}
+#	rm -f lib${LIB}_g.a ${GOBJS}
+#	rm -f lib${LIB}_p.a ${POBJS}
 	rm -f lib${LIB}.so.*.* ${SOBJS} .ldadd
+	rm -f lib${LIB}.so
 	rm -f ${DIST_LIB} ${DOBJS}
 .endif
 
@@ -273,30 +275,31 @@ beforeinstall:
 .endif
 
 realinstall:
-.if !defined(NOLIBSTATIC)
-	${INSTALL} ${INSTALL_COPY} -D -m 600 lib${LIB}.a \
-	    ${DESTDIR}${LIBDIR}/lib${LIB}.a
-	chmod ${LIBMODE} ${DESTDIR}${LIBDIR}/lib${LIB}.a
-.endif
-.if !defined(NOPROFILE)
-	${INSTALL} ${INSTALL_COPY} -D -m 600 \
-	    lib${LIB}_p.a ${DESTDIR}${LIBDIR}
-	chmod ${LIBMODE} ${DESTDIR}${LIBDIR}/lib${LIB}_p.a
-.endif
+#.if !defined(NOLIBSTATIC)
+#	${INSTALL} ${INSTALL_COPY} -D -m 600 lib${LIB}.a \
+#	    ${DESTDIR}${LIBDIR}/lib${LIB}.a
+#	chmod ${LIBMODE} ${DESTDIR}${LIBDIR}/lib${LIB}.a
+#.endif
+#.if !defined(NOPROFILE)
+#	${INSTALL} ${INSTALL_COPY} -D -m 600 \
+#	    lib${LIB}_p.a ${DESTDIR}${LIBDIR}
+#	chmod ${LIBMODE} ${DESTDIR}${LIBDIR}/lib${LIB}_p.a
+#.endif
 .if !defined(NOPIC) && defined(SHLIB_MAJOR) && defined(SHLIB_MINOR)
 	${INSTALL} ${INSTALL_COPY} -d ${DESTDIR}${LIBDIR}
 	${INSTALL} ${INSTALL_COPY} -m ${LIBMODE} \
 	    ${FULLSHLIBNAME} ${DESTDIR}${LIBDIR}
-.if defined(LIBREBUILD)
-.if !defined(DESTDIR)
-	@echo cleaning out old relink libraries to conserve disk space
-	rm -f /usr/share/relink/${LIBDIR}/lib${LIB}.*.a
-.endif	
-	${INSTALL} -d -o ${LIBOWN} -g ${LIBGRP} -m 755 \
-	   ${DESTDIR}/usr/share/relink/${LIBDIR}
-	${INSTALL} ${INSTALL_COPY} -o ${LIBOWN} -g ${LIBGRP} -m ${LIBMODE} \
-	    ${FULLSHLIBNAME}.a ${DESTDIR}/usr/share/relink/${LIBDIR}
-.endif
+	cp -v lib${LIB}.so ${DESTDIR}${LIBDIR}
+#.if defined(LIBREBUILD)
+#.if !defined(DESTDIR)
+#	@echo cleaning out old relink libraries to conserve disk space
+#	rm -f /usr/share/relink/${LIBDIR}/lib${LIB}.*.a
+#.endif	
+#	${INSTALL} -d -o ${LIBOWN} -g ${LIBGRP} -m 755 \
+#	   ${DESTDIR}/usr/share/relink/${LIBDIR}
+#	${INSTALL} ${INSTALL_COPY} -o ${LIBOWN} -g ${LIBGRP} -m ${LIBMODE} \
+#	    ${FULLSHLIBNAME}.a ${DESTDIR}/usr/share/relink/${LIBDIR}
+#.endif
 .endif
 .if defined(LINKS) && !empty(LINKS)
 .  for lnk file in ${LINKS}

@@ -372,8 +372,7 @@ printlink(FTSENT *p)
 		return;
 	}
 	path[lnklen] = '\0';
-	(void)printf(" -> ");
-	//(void)mbsprint(path, 1);
+	(void) printf(" -> %s", path);
 }
 
 static void

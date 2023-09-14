@@ -3,7 +3,7 @@
 #	@(#)Makefile	8.1 (Berkeley) 5/31/93
 
 all:
-	${CC} -I../../libcobalt strfile.c -o strfile
+	${CC} -I../../libcobalt -lcobalt strfile.c -o strfile
 
 clean:
 	rm -fv strfile

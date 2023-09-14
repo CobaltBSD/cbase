@@ -4,20 +4,6 @@ unicode \- interpret Unicode characters
 .SH SYNOPSIS
 .B unicode
 [
-.B -8
-]
-[
-.BI -oxdb n
-]
-[
-.B -nct
-]
-[
-.I text
-]
-.PP
-.B unicode
-[
 .B -nt
 ]
 .IB hexmin - hexmax
@@ -66,8 +52,11 @@ may be unhelpful if the characters printed are not available in the current font
 .PP
 .SH EXAMPLES
 .TP
-.B "unicode p"
+.B "unicode -n p"
 Print the hex value of `p'.
 .TP
-.B "unicode 2200-22f1"
+.B "unicode 2200-22f1 | rs"
 Print a table of miscellaneous mathematical symbols.
+.PP
+.SH HISTORY
+The `unicode` utility originally appeared in Plan9 First Edition in 1992. The version currently shipped with Cobalt is a rewrite.

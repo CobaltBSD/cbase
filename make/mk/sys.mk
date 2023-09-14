@@ -28,7 +28,7 @@ LINK.s?=	${CC} ${AFLAGS} ${LDFLAGS}
 COMPILE.S?=	${CC} ${AFLAGS} ${CPPFLAGS} -c
 LINK.S?=	${CC} ${AFLAGS} ${CPPFLAGS} ${LDFLAGS}
 
-CC?=		cc -lopenbsd -Wno-unused-command-line-argument
+CC?=		cc -Wno-unused-command-line-argument
 
 PIPE?=		-pipe
 

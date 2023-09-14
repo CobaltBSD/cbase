@@ -2,21 +2,13 @@
 #	$NetBSD: Makefile,v 1.15 1996/02/29 00:21:16 jtc Exp $
 #	@(#)Makefile	8.2 (Berkeley) 4/19/94
 
-SRCS=	fortunes fortunes2 startrek zippy recipes
-BLDS=	fortunes.dat fortunes2.dat startrek.dat zippy.dat \
-	fortunes-o fortunes-o.dat recipes.dat
+SRCS=	fortunes fortunes-o startrek zippy recipes limerick
+BLDS=	fortunes.dat startrek.dat zippy.dat \
+	fortunes-o.dat recipes.dat limerick.dat
 #TODO should probably only install .dat files
 
 # TO INSTALL THE POTENTIALLY OFFENSIVE FORTUNES, UNCOMMENT THE THREE
 # LINES AND COMMENT OUT THE FOURTH LINE.
-
-# THE THREE LINES
-SRCS+=	fortunes2-o limerick
-BLDS+=	fortunes2-o.dat limerick.dat
-TYPE=	real
-
-# THE FOURTH LINE
-#TYPE=	fake
 
 CLEANFILES+=${BLDS}
 
@@ -27,18 +19,12 @@ STRFILE!=cd $(.CURDIR)/../strfile; \
 all: ${BLDS}
 
 install: ${SRCS} ${BLDS}
-	(cd ${.CURDIR} && ${INSTALL} -d ${DESTDIR}/usr/share/fortune/ && ${INSTALL} ${INSTALL_COPY} -m 444 \
-	    ${SRCS} ${DESTDIR}/usr/share/fortune/)
+	(cd ${.CURDIR} && ${INSTALL} -d ${DESTDIR}/usr/share/fortunes/ && ${INSTALL} ${INSTALL_COPY} -m 444 \
+	    ${SRCS} ${DESTDIR}/usr/share/fortunes/)
 	${INSTALL} ${INSTALL_COPY} -D -m 444 ${BLDS} \
-	    ${DESTDIR}/usr/share/fortune
+	    ${DESTDIR}/usr/share/fortunes
 
-fortunes.dat fortunes2.dat fortunes2-o.dat limerick.dat startrek.dat zippy.dat recipes.dat:
+fortunes.dat fortunes-o.dat limerick.dat startrek.dat zippy.dat recipes.dat:
 	${STRFILE} -s ${.CURDIR}/${.TARGET:R} ${.TARGET}
-
-fortunes-o.dat: fortunes-o
-	${STRFILE} -sx fortunes-o ${.TARGET}
-
-fortunes-o: fortunes-o.${TYPE}
-	tr [a-zA-Z] [n-za-mN-ZA-M] < ${.ALLSRC} > ${.TARGET}
 
 .include <bsd.prog.mk>

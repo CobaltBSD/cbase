@@ -1,3 +1,21 @@
+0.10 - ...
+* Removed `news`
+* `unicode` and `freq` rewritten without Plan9 libraries
+* Reworked `unicode` and `freq` man pages
+* Removed all remaining plan9 code
+* Removed dead source file from `ls` and fixed symlink reading
+* Changed GNUmakefile references of libopenbsd to libcobalt
+* Removed forced linking with libcobalt in mk files, which was causing
+circular and/or unneccessary linkage
+* `doas` is now correctly installed as setuid
+* Removed support for static building from mk files
+* Libraries built with mk files now always have a symlink without the soname
+* Disabled mk files from checking for the crt
+* Combined fortunes2 and the offensive variant into the main fortunes lists
+* Added additional fortunes
+* Added `wisdom` and `shsecret` programs
+* `cp` no longer errors when `chmod` fails
+
 0.9 - Sep 9 2023
 * Rename libopenbsd to libcobalt
 * Set `cp -r` functionality identical to `cp -R`, allowing symlinks and

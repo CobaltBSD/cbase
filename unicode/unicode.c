@@ -1,121 +1,74 @@
-#include <u.h>
-#include <libc.h>
-#include <bio.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <locale.h>
 
-char	usage[] = "unicode { [-t] hex hex ... | hexmin-hexmax ... | [-n] char ... }";
-char	hex[] = "0123456789abcdefABCDEF";
-int	numout = 0;
-int	text = 0;
-Biobuf	bout;
+int tflag = 0; // If not a range, if there should be a line break in between characters
+int nflag = 0; // Convert characters to ASCII
 
-char	*range(char*[]);
-char	*nums(char*[]);
-char	*chars(char*[]);
-
-int
-main(int argc, char *argv[])
-{
-	ARGBEGIN{
-	case 'n':
-		numout = 1;
-		break;
-	case 't':
-		text = 1;
-		break;
-	}ARGEND
-	Binit(&bout, 1, OWRITE);
-	if(argc == 0){
-		fprint(2, "usage: %s\n", usage);
-		exits("usage");
-	}
-	if(!numout && utfrune(argv[0], '-'))
-		exits(range(argv));
-	if(numout || strchr(hex, argv[0][0])==0)
-		exits(nums(argv));
-	exits(chars(argv));
+void usage(void) {
+	(void) fputs("unicode { [-t] hex hex ... | hexmin-hexmax ... | [-n] char ... }\n", stderr);
+	exit(EXIT_FAILURE);
 }
 
-char*
-range(char *argv[])
-{
-	char *q;
-	int min, max;
-	int i;
+int main(int argc, char *argv[]) {
+	(void) setlocale(LC_ALL, "UTF-8");
+	int c;
 
-	while(*argv){
-		q = *argv;
-		if(strchr(hex, q[0]) == 0){
-    err:
-			fprint(2, "unicode: bad range %s\n", *argv);
-			return "bad range";
+	while ((c = getopt(argc, argv, "tn")) != -1) {
+		switch (c) {
+			case 't':
+				tflag = 1;
+				break;
+			case 'n':
+				nflag = 1;
+				break;
+			default:
+				usage();
 		}
-		min = strtoul(q, &q, 16);
-		if(min<0 || min>Runemax || *q!='-')
-			goto err;
-		q++;
-		if(strchr(hex, *q) == 0)
-			goto err;
-		max = strtoul(q, &q, 16);
-		if(max<0 || max>Runemax || max<min || *q!=0)
-			goto err;
-		i = 0;
-		do{
-			Bprint(&bout, "%.4x %C", min, min);
-			i++;
-			if(min==max || (i&7)==0)
-				Bprint(&bout, "\n");
-			else
-				Bprint(&bout, "\t");
-			min++;
-		}while(min<=max);
-		argv++;
 	}
-	return 0;
-}
+	argc -= optind;
+	argv += optind;
 
-char*
-nums(char *argv[])
-{
-	char *q;
-	Rune r;
-	int w;
-
-	while(*argv){
-		q = *argv;
-		while(*q){
-			w = chartorune(&r, q);
-			if(r==0x80 && (q[0]&0xFF)!=0x80){
-				fprint(2, "unicode: invalid utf string %s\n", *argv);
-				return "bad utf";
+	if (nflag) { // tflag is ignored if nflag is specified
+		while (argc) {
+			for (int i = 0; i < strlen(argv[0]); i++) {
+				printf("%04x\n", argv[0][i]);
 			}
-			Bprint(&bout, "%.4x\n", r);
-			q += w;
+
+			argc--;
+			argv++;
 		}
+		exit(EXIT_SUCCESS);
+	}
+
+	int use_ranges = 0; // If any ranges are in use, display as a table instead
+	while (argc) {
+		if (use_ranges == 0) use_ranges = strchr(argv[0], '-') == NULL ? -1 : 1; // First value determines if it is a range or not
+		char *tok = strtok(argv[0], "-");
+
+		if (use_ranges == 1) {
+			long c1 = strtol(tok, NULL, 16);
+			tok = strtok(NULL, "-");
+
+			long c2 = strtol(tok, NULL, 16);
+			if (strtok(NULL, "-") != NULL) {
+				(void) fputs("Invalid range\n", stderr);
+				exit(EXIT_FAILURE);
+			}
+
+			for (; c1 < c2; c1++) {
+				printf("%04lx %lc\n", c1, (wchar_t) c1);
+			}
+		} else {
+			long c = strtol(argv[0], NULL, 16);
+			printf("%lc%s", (wchar_t) c, tflag ? "" : "\n");
+		}
+
+		argc--;
 		argv++;
 	}
-	return 0;
-}
 
-char*
-chars(char *argv[])
-{
-	char *q;
-	int m;
-
-	while(*argv){
-		q = *argv;
-		if(strchr(hex, q[0]) == 0){
-    err:
-			fprint(2, "unicode: bad unicode value %s\n", *argv);
-			return "bad char";
-		}
-		m = strtoul(q, &q, 16);
-		if(m<0 || m>Runemax || *q!=0)
-			goto err;
-		Bprint(&bout, "%C", m);
-		if(!text)
-			Bprint(&bout, "\n");
-		argv++;
-	}
-	return 0;
+	return EXIT_SUCCESS;
 }
