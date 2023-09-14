@@ -15,6 +15,7 @@ circular and/or unneccessary linkage
 * Added additional fortunes
 * Added `wisdom` and `shsecret` programs
 * `cp` no longer errors when `chmod` fails
+* Build fixes
 
 0.9 - Sep 9 2023
 * Rename libopenbsd to libcobalt

@@ -6,7 +6,6 @@
 #include<inttypes.h>
 #include<stdarg.h>
 #include<sys/types.h>
-#include<db.h>
 #include<sys/cdefs.h>
 #include<signal.h>
 

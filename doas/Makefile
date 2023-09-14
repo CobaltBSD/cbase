@@ -1,7 +1,7 @@
 # We build doas separately and uncrunched, so that we don't need to setuid the entire cbtutils binary
 
 CFLAGS+=-I../libcobalt
-LDFLAGS+=-lcobalt
+LDFLAGS+=-lcobalt -L../libcobalt
 
 MAN=	doas.1 doas.conf.5
 SRCS=	doas.c env.c shadow.c y.tab.c
