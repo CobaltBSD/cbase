@@ -4,7 +4,7 @@ MAN=	units.1
 
 install:
 	${INSTALL} ${INSTALL_COPY} -d ${DESTDIR}${PREFIX}/share/misc
-	${INSTALL} ${INSTALL_COPY} -m 444 \
+	${INSTALL} ${INSTALL_COPY} -m 644 \
 	    ${.CURDIR}/units.lib ${DESTDIR}${PREFIX}/share/misc
 
 .include <bsd.prog.mk>

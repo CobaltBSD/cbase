@@ -19,9 +19,9 @@ STRFILE!=cd $(.CURDIR)/../strfile; \
 all: ${BLDS}
 
 install: ${SRCS} ${BLDS}
-	(cd ${.CURDIR} && ${INSTALL} -d ${DESTDIR}/usr/share/fortunes/ && ${INSTALL} ${INSTALL_COPY} -m 444 \
+	(cd ${.CURDIR} && ${INSTALL} -d ${DESTDIR}/usr/share/fortunes/ && ${INSTALL} ${INSTALL_COPY} -m 644 \
 	    ${SRCS} ${DESTDIR}/usr/share/fortunes/)
-	${INSTALL} ${INSTALL_COPY} -D -m 444 ${BLDS} \
+	${INSTALL} ${INSTALL_COPY} -D -m 644 ${BLDS} \
 	    ${DESTDIR}/usr/share/fortunes
 
 fortunes.dat fortunes-o.dat limerick.dat startrek.dat zippy.dat recipes.dat:

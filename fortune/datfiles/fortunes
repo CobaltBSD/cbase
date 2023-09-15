@@ -55359,7 +55359,7 @@ There has also been some work to allow the interesting use of macro names.
 For example, if you wanted all of your "creat()" calls to include read
 permissions for everyone, you could say
 
-	#define creat(file, mode)	creat(file, mode | 0444)
+	#define creat(file, mode)	creat(file, mode | 0644)
 
 	I would recommend against this kind of thing in general, since it
 hides the changed semantics of "creat()" in a macro, potentially far away

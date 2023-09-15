@@ -11,13 +11,13 @@ includes:
 	mkdir -p "${DESTDIR}/usr/include/sys"
 	for i in ${HDRS}; do \
 		j="cmp -s $$i ${DESTDIR}/usr/include/$$i || \
-		${INSTALL} ${INSTALL_COPY} -m 444 $$i ${DESTDIR}/usr/include"; \
+		${INSTALL} ${INSTALL_COPY} -m 644 $$i ${DESTDIR}/usr/include"; \
 		echo $$j; \
 		eval "$$j"; \
 	done
 	for i in ${SYSHDRS}; do \
 		j="cmp -s sys/$$i ${DESTDIR}/usr/include/sys/$$i || \
-		${INSTALL} ${INSTALL_COPY} -m 444 sys/$$i ${DESTDIR}/usr/include/sys"; \
+		${INSTALL} ${INSTALL_COPY} -m 644 sys/$$i ${DESTDIR}/usr/include/sys"; \
 		echo $$j; \
 		eval "$$j"; \
 	done
