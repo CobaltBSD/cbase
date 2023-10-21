@@ -300,7 +300,7 @@ read_excludes_file(char *file)
 		fp = stdin;
 	else if ((fp = fopen(file, "r")) == NULL)
 		err(2, "%s", file);
-	while ((buf = fgetln(fp, &len)) != NULL) {
+	while ((getline(&buf, &len, fp)) != -1) {
 		if (buf[len - 1] == '\n')
 			len--;
 		pattern = xmalloc(len + 1);

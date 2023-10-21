@@ -93,7 +93,7 @@ static void free_input_stream(struct input_stream *);
 #define read_char()	\
     current->ptr < current->end ? *current->ptr++ : grab_new_line_and_readchar()
 /* char = grab_new_line_and_readchar();
- *	Guts for read_char. Grabs a new line off fgetln when we have
+ *	Guts for read_char. Grabs a new line off getline when we have
  *	consumed the current line and returns the first char, or EOF at end of
  *	stream.  */
 static int grab_new_line_and_readchar(void);
@@ -234,7 +234,7 @@ grab_new_line_and_readchar(void)
 	size_t len;
 
 	if (current->F) {
-		current->ptr = fgetln(current->F, &len);
+		getline(&current->ptr, &len, current->F);
 		if (current->ptr) {
 			current->end = current->ptr + len;
 			return *current->ptr++;
