@@ -11,11 +11,9 @@
 
 #define GID_MAX 65535
 #define UID_MAX 65535
-//#define __dead
+#define __dead
 
 #define S_ISTXT S_ISVTX
-
-#define DEFFILEMODE (S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH) // 0666
 
 #define SIGINFO 29
 
@@ -37,8 +35,6 @@
 
 #define	MNT_LOCAL	0x00001000
 #define MNT_NOWAIT	2
-
-#define ACCESSPERMS	(S_IRWXU | S_IRWXG | S_IRWXO) // 0777
 
 #define	MFSNAMELEN	16	/* length of fs type name, including nul */
 
@@ -117,8 +113,6 @@ static const char *const sys_signame[NSIG] = {
 
 #define	_PATH_LOGIN_CONF_D	"/etc/login.conf.d"
 #define	_PATH_LOGIN_CONF	"/etc/login.conf"
-
-#define ALLPERMS 0777
 
 #define	REG_STARTEND	00004
 
@@ -201,3 +195,19 @@ int fmt_scaled(long long number, char *result);
 int radixsort(const u_char **a, int n, const u_char *tab, u_int endch);
 
 int sradixsort(const u_char **a, int n, const u_char *tab, u_int endch);
+
+#if __BYTE_ORDER == __LITTLE_ENDIAN
+#define betoh16(x) __bswap16(x)
+#define betoh32(x) __bswap32(x)
+#define betoh64(x) __bswap64(x)
+#define letoh16(x) (uint16_t)(x)
+#define letoh32(x) (uint32_t)(x)
+#define letoh64(x) (uint64_t)(x)
+#else
+#define betoh16(x) (uint16_t)(x)
+#define betoh32(x) (uint32_t)(x)
+#define betoh64(x) (uint64_t)(x)
+#define letoh16(x) __bswap16(x)
+#define letoh32(x) __bswap32(x)
+#define letoh64(x) __bswap64(x)
+#endif

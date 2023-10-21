@@ -18,8 +18,6 @@ libcobalt/libcobalt.so:
 		libcobalt/setmode.c \
 		libcobalt/warnc.c \
 		libcobalt/vwarnc.c \
-		libcobalt/strtofflags.c \
-		libcobalt/fts.c \
 		libcobalt/malloc.c \
 		libcobalt/errc.c \
 		libcobalt/verrc.c \
@@ -27,20 +25,22 @@ libcobalt/libcobalt.so:
 		libcobalt/getbsize.c \
 		libcobalt/fmt_scaled.c \
 		libcobalt/siphash.c \
-		libcobalt/srandom_deterministic.c \
 		libcobalt/ohash.c \
-		libcobalt/db.c \
-		libcobalt/hash.c \
-		libcobalt/hash_bigkey.c \
-		libcobalt/hash_buf.c \
-		libcobalt/hash_func.c \
-		libcobalt/hash_log2.c \
-		libcobalt/hash_page.c \
-		libcobalt/ndbm.c \
 		libcobalt/base64.c \
 		libcobalt/vis.c \
 		libcobalt/unvis.c \
 		libcobalt/strmode.c \
+		libcobalt/base64.c \
+		libcobalt/siphash.c \
+		libcobalt/radixsort.c \
+		libcobalt/icdb.c \
+		libcobalt/md5.c \
+		libcobalt/rmd160.c \
+		libcobalt/sha1.c \
+		libcobalt/sha2.c \
+		libcobalt/readpassphrase.c \
+		libcobalt/strlcpy.c \
+		libcobalt/strlcat.c
 		-o $@
 
 make/generate: libcobalt/libcobalt.so

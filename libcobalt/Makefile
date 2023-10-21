@@ -4,7 +4,7 @@ SHLIB_MINOR=0
 
 CFLAGS += -I.
 
-HDRS=base64.h fts.h icdb.h md5.h ohash.h openbsd.h readpassphrase.h rmd160.h sha1.h sha2.h siphash.h util.h vis.h
+HDRS=base64.h icdb.h md5.h ohash.h openbsd.h readpassphrase.h rmd160.h sha1.h sha2.h siphash.h util.h vis.h
 SYSHDRS=cdefs.h tree.h
 
 includes:
@@ -29,7 +29,6 @@ SRCS =	pledge.c \
 	setmode.c \
 	warnc.c \
 	vwarnc.c \
-	fts.c \
 	malloc.c \
 	errc.c \
 	verrc.c \
@@ -48,7 +47,9 @@ SRCS =	pledge.c \
 	rmd160.c \
 	sha1.c \
 	sha2.c \
-	readpassphrase.c
+	readpassphrase.c \
+	strlcpy.c \
+	strlcat.c
 
 .include <bsd.lib.mk>
 .include <bsd.subdir.mk>

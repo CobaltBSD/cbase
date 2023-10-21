@@ -43,11 +43,12 @@
  * https://131002.net/siphash/
  */
 
-#include<string.h>
+#include <string.h>
 
 #include <sys/param.h>
 
-#include"siphash.h"
+#include "openbsd.h"
+#include "siphash.h"
 
 static void	SipHash_CRounds(SIPHASH_CTX *, int);
 static void	SipHash_Rounds(SIPHASH_CTX *, int);
