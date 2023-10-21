@@ -1,6 +1,7 @@
 #pragma once
 
-#include<sys/types.h>
+#include <sys/types.h>
+#include <stdint.h>
 
 struct icdb;
 
