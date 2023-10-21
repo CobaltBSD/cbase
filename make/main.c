@@ -202,7 +202,6 @@ MainParseArgs(int argc, char **argv)
 		err(2, "pledge");
 
 	optind = 1;	/* since we're called more than once */
-	optreset = 1;
 	optend = 0;
 	while (optind < argc) {
 		if (!optend && argv[optind][0] == '-') {
@@ -357,7 +356,6 @@ MainParseChdir(int argc, char **argv)
 	int c, optend, oldopterr;
 
 	optind = 1;	/* since we're called more than once */
-	optreset = 1;
 	optend = 0;
 	oldopterr = opterr;
 	opterr = 0;

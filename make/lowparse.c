@@ -47,6 +47,7 @@
 #include "location.h"
 #endif
 #include "var.h"
+#include "openbsd.h"
 
 
 #define READ_MAKEFILES "MAKEFILE_LIST"
