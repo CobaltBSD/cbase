@@ -34,6 +34,7 @@
  */
 
 #include <sys/types.h>
+#include "openbsd.h"
 
 #include <assert.h>
 #include <grp.h>

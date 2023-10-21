@@ -211,3 +211,6 @@ int sradixsort(const u_char **a, int n, const u_char *tab, u_int endch);
 #define letoh32(x) __bswap32(x)
 #define letoh64(x) __bswap64(x)
 #endif
+
+size_t strlcpy(char *dst, const char *src, size_t dsize);
+size_t strlcat(char *dst, const char *src, size_t dsize);
