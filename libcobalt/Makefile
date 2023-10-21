@@ -32,7 +32,6 @@ SRCS =	pledge.c \
 	malloc.c \
 	errc.c \
 	verrc.c \
-	logwtmp.c \
 	getbsize.c \
 	fmt_scaled.c \
 	ohash.c \

@@ -4,6 +4,7 @@
 * Fixed GNUmakefile
 * Various small musl-to-glibc adaptions for libcobalt
 * Added strlcpy and strlcat
+* Remove logwtmp
 
 0.11 - Sep 17 2023
 * Removed orphaned binary

@@ -21,16 +21,13 @@ libcobalt/libcobalt.so:
 		libcobalt/malloc.c \
 		libcobalt/errc.c \
 		libcobalt/verrc.c \
-		libcobalt/logwtmp.c \
 		libcobalt/getbsize.c \
 		libcobalt/fmt_scaled.c \
-		libcobalt/siphash.c \
 		libcobalt/ohash.c \
 		libcobalt/base64.c \
 		libcobalt/vis.c \
 		libcobalt/unvis.c \
 		libcobalt/strmode.c \
-		libcobalt/base64.c \
 		libcobalt/siphash.c \
 		libcobalt/radixsort.c \
 		libcobalt/icdb.c \
@@ -40,7 +37,7 @@ libcobalt/libcobalt.so:
 		libcobalt/sha2.c \
 		libcobalt/readpassphrase.c \
 		libcobalt/strlcpy.c \
-		libcobalt/strlcat.c
+		libcobalt/strlcat.c \
 		-o $@
 
 make/generate: libcobalt/libcobalt.so
