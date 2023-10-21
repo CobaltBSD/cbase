@@ -104,7 +104,7 @@ install: ${SUBDIR} fortune/datfiles
 	ln -sf cbtutils ${DESTDIR}${BINDIR}/wisdom
 	ln -sf cbtutils ${DESTDIR}${BINDIR}/shsecret
 	# `version` utility is deliberately un-symlinked
-	mkdir ${DESTDIR}/usr/share
+	mkdir -p ${DESTDIR}/usr/share
 	cp -rf make/mk ${DESTDIR}/usr/share/
 
 #TODO: install libcobalt headers

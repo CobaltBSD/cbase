@@ -1,3 +1,6 @@
+0.12 - ...
+* Fixed installation bug
+
 0.11 - Sep 17 2023
 * Removed orphaned binary
 * Fixed mk file install location
