@@ -12,7 +12,7 @@ clean:
 	${MAKE} -C awk clean
 	${MAKE} -C make clean
 	${MAKE} -C doas clean
-	make -C getent
+	${MAKE} -C getent
 
 .include <bsd.prog.mk>
 

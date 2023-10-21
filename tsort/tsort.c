@@ -207,7 +207,7 @@ ereallocarray(void *p, size_t n, size_t s)
  ***/
 
 /* Inserting and finding nodes in the hash structure.
- * We handle interval strings for efficiency wrt getline.  */
+ * We handle interval strings for efficiency wrt fgetln.  */
 static struct node *
 new_node(const char *start, const char *end)
 {
@@ -312,7 +312,7 @@ read_pairs(FILE *f, struct ohash *h, int reverse, const char *name,
 	toggle = 1;
 	a = NULL;
 
-	while (getline(&str, &size, f) != -1) {
+	while ((str = fgetln(f, &size)) != NULL) {
 		char *sentinel;
 
 		sentinel = str + size;
@@ -361,7 +361,7 @@ read_hints(FILE *f, struct ohash *h, int quiet, const char *name,
 	char 		*str;
 	size_t 		size;
 
-	while (getline(&str, &size, f) != -1) {
+	while ((str = fgetln(f, &size)) != NULL) {
 		char *sentinel;
 
 		sentinel = str + size;

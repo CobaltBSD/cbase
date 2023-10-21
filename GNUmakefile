@@ -38,6 +38,7 @@ libcobalt/libcobalt.so:
 		libcobalt/readpassphrase.c \
 		libcobalt/strlcpy.c \
 		libcobalt/strlcat.c \
+		libcobalt/fgetln.c \
 		-o $@
 
 make/generate: libcobalt/libcobalt.so
@@ -99,7 +100,7 @@ make/make: make/varhashconsts.h make/condhashconsts.h make/nodehashconsts.h
 		make/lst.lib/lstReplace.c \
 		make/lst.lib/lstRequeue.c \
 		make/lst.lib/lstSucc.c \
-		-Imake $(CFLAGS) -o $@
+		-Wl,-rpath=$(PWD)/libcobalt -Imake $(CFLAGS) -o $@
 
 clean:
 	rm -fv libcobalt/libcobalt.so make/generate make/varhashconsts.h make/condhashconsts.h make/nodehashconsts.h make/make

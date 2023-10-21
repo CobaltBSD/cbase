@@ -48,7 +48,8 @@ SRCS =	pledge.c \
 	sha2.c \
 	readpassphrase.c \
 	strlcpy.c \
-	strlcat.c
+	strlcat.c \
+	fgetln.c
 
 .include <bsd.lib.mk>
 .include <bsd.subdir.mk>
