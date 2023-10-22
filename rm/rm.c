@@ -208,7 +208,7 @@ rm_tree(char **argv)
 		case FTS_DNR:
 			if (!rmdir(p->fts_accpath)) {
 				if (vflag)
-					fprintf(stdout, "%s\n", p->fts_path);
+					fprintf(stdout, "removed '%s'\n", p->fts_path);
 				continue;
 			}
 			if (fflag && errno == ENOENT)
@@ -224,7 +224,7 @@ rm_tree(char **argv)
 		default:
 			if (!unlink(p->fts_accpath)) {
 				if (vflag)
-					fprintf(stdout, "%s\n", p->fts_path);
+					fprintf(stdout, "removed '%s'\n", p->fts_path);
 				continue;
 			}
 			if (fflag && errno == ENOENT)
@@ -277,7 +277,7 @@ rm_file(char **argv)
 			warn("%s", f);
 			eval = 1;
 		} else if (rval == 0 && vflag)
-			(void)fprintf(stdout, "%s\n", f);
+			(void)fprintf(stdout, "removed '%s'\n", f);
 	}
 }
 

@@ -101,3 +101,4 @@ install:
 
 #TODO: install libcobalt headers
 #TODO: other bsd man pages?
+#TODO: install man pages

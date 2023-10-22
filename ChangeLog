@@ -6,6 +6,7 @@
 * GNUmakefile links with the local libcobalt directory
 * Removed OpenBSD Make, build system replaced by GNU Make
 * Removed m4, awk, unifdef and getent
+* Improved verbose `rm` text
 
 0.11 - Sep 17 2023
 * Removed orphaned binary

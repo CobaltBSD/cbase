@@ -2,7 +2,7 @@ LIB=	cobalt
 SHLIB_MAJOR=0
 SHLIB_MINOR=0
 
-CFLAGS += -I.
+CFLAGS += -I. -fPIC
 
 HDRS=base64.h icdb.h md5.h ohash.h openbsd.h readpassphrase.h rmd160.h sha1.h sha2.h siphash.h util.h vis.h tree.h
 
