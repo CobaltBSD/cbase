@@ -31,6 +31,8 @@
  */
 
 #define _XOPEN_SOURCE
+#define _POSIX_C_SOURCE 200809L
+#define _DEFAULT_SOURCE
 
 #include <openbsd.h>
 
@@ -283,8 +285,8 @@ stime_file(char *fname, struct timespec *tsp)
 
 	if (stat(fname, &sb))
 		err(1, "%s", fname);
-	tsp[0] = sb.st_atime;
-	tsp[1] = sb.st_mtime;
+	tsp[0] = sb.st_atim;
+	tsp[1] = sb.st_mtim;
 }
 
 void
