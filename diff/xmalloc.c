@@ -13,6 +13,8 @@
  * called by a name other than "ssh" or "Secure Shell".
  */
 
+#define _GNU_SOURCE
+
 #include <err.h>
 #include <stdarg.h>
 #include <stdint.h>
