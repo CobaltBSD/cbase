@@ -43,7 +43,6 @@ install:
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/diff
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/dirname
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/echo
-	ln -sf cbtutils $(DESTDIR)$(BINDIR)/env
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/expr
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/false
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/fold
