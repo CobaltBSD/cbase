@@ -9,13 +9,20 @@
 #include <sys/types.h>
 #include <sys/cdefs.h>
 #include <signal.h>
-#include<stddef.h>
+#include <stddef.h>
 
 #define GID_MAX 65535
 #define UID_MAX 65535
 
 #ifndef __dead
 #define __dead
+#endif
+
+typedef unsigned char u_char;
+typedef unsigned int u_int;
+
+#ifndef NSIG
+#define NSIG 32
 #endif
 
 #ifndef DEFFILEMODE
@@ -224,3 +231,15 @@ int sradixsort(const u_char **a, int n, const u_char *tab, u_int endch);
 size_t strlcpy(char *dst, const char *src, size_t dsize);
 size_t strlcat(char *dst, const char *src, size_t dsize);
 char *fgetln(FILE *stream, size_t *len);
+
+#ifndef NL_TEXTMAX
+#define NL_TEXTMAX 2048
+#endif
+
+#ifndef UTIME_NOW
+#define UTIME_NOW	((1l << 30) - 1l)
+#endif
+
+#ifndef UTIME_OMIT
+#define UTIME_OMIT 0x3ffffffe
+#endif

@@ -30,7 +30,9 @@
  * SUCH DAMAGE.
  */
 
-#include<openbsd.h>
+#define _XOPEN_SOURCE
+
+#include <openbsd.h>
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -281,8 +283,8 @@ stime_file(char *fname, struct timespec *tsp)
 
 	if (stat(fname, &sb))
 		err(1, "%s", fname);
-	tsp[0] = sb.st_atim;
-	tsp[1] = sb.st_mtim;
+	tsp[0] = sb.st_atime;
+	tsp[1] = sb.st_mtime;
 }
 
 void
