@@ -18,7 +18,7 @@
 #include <openbsd.h>
 
 #include <sys/types.h>
-#include <sys/tree.h>
+#include <tree.h>
 
 #include <string.h>
 #include <stdio.h>

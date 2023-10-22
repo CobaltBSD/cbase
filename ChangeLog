@@ -7,6 +7,7 @@
 * Removed OpenBSD Make, build system replaced by GNU Make
 * Removed m4, awk, unifdef and getent
 * Improved verbose `rm` text
+* Move <sys/tree.h> header to <tree.h>
 
 0.11 - Sep 17 2023
 * Removed orphaned binary
