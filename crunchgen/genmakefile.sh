@@ -1,4 +1,4 @@
-#!/usr/bin/zsh
+#!/usr/bin/sh
 
 echo "all: entry_points.h"
 

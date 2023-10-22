@@ -8,6 +8,7 @@
 * Removed m4, awk, unifdef and getent
 * Improved verbose `rm` text
 * Move <sys/tree.h> header to <tree.h>
+* Removed Zsh dependency
 
 0.11 - Sep 17 2023
 * Removed orphaned binary
