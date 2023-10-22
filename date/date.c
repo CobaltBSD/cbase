@@ -30,7 +30,9 @@
  * SUCH DAMAGE.
  */
 
-#include<openbsd.h>
+#define _XOPEN_SOURCE
+
+#include <openbsd.h>
 
 #include <sys/types.h>
 #include <sys/time.h>
