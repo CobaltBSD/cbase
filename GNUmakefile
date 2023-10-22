@@ -23,7 +23,6 @@ install:
 	mkdir -p $(DESTDIR)$(SBINDIR)
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/cp
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/mv
-	ln -sf cbtutils $(DESTDIR)$(BINDIR)/make
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/fortune
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/grdc
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/locale
@@ -32,7 +31,6 @@ install:
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/tetris
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/units
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/arch
-	ln -sf cbtutils $(DESTDIR)$(BINDIR)/awk
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/banner
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/basename
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/cat
@@ -49,7 +47,6 @@ install:
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/expr
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/false
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/fold
-	ln -sf cbtutils $(DESTDIR)$(BINDIR)/getconf
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/getopt
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/head
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/hostname
@@ -59,7 +56,6 @@ install:
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/ln
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/logger
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/logname
-	ln -sf cbtutils $(DESTDIR)$(BINDIR)/m4
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/mkdir
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/mktemp
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/nl
@@ -83,7 +79,6 @@ install:
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/tsort
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/tty
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/uname
-	ln -sf cbtutils $(DESTDIR)$(BINDIR)/unifdef
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/uniq
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/unvis
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/vis
@@ -91,7 +86,6 @@ install:
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/yes
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/freq
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/unicode
-	ln -sf cbtutils $(DESTDIR)$(BINDIR)/getent
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/entropy
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/wisdom
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/shsecret

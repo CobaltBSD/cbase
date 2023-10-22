@@ -5,7 +5,7 @@
 * Added strlcpy, strlcat and fgetln to libcobalt
 * GNUmakefile links with the local libcobalt directory
 * Removed OpenBSD Make, build system replaced by GNU Make
-* Removed m4, awk, unifdef and getent
+* Removed m4, awk, unifdef, getent and getconf
 * Improved verbose `rm` text
 * Move <sys/tree.h> header to <tree.h>
 
