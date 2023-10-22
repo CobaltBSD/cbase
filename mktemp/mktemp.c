@@ -17,7 +17,9 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#include<openbsd.h>
+#define _GNU_SOURCE
+
+#include <openbsd.h>
 
 #include <err.h>
 #include <paths.h>
