@@ -6,7 +6,9 @@
  * Public domain.
  */
 
-#include<openbsd.h>
+#define _GNU_SOURCE
+
+#include <openbsd.h>
 
 #include <stdio.h>
 #include <stdint.h>
