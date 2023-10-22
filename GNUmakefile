@@ -1,106 +1,103 @@
-# Builds a standalone libcobalt.so and make utility
+CFLAGS += -lzxcvbn -Ilibcobalt -Llibcobalt -lcobalt
 
-CFLAGS := -Llibcobalt -lcobalt -Ilibcobalt
-
-PREFIX := /usr
-
-MAGICVARSLOTS=82
-MAGICCONDSLOTS=65
-
-all: make/make
-
-libcobalt/libcobalt.so:
-	$(CC) -fPIC -shared -Ilibcobalt \
-		libcobalt/pledge.c \
-		libcobalt/getprogname.c \
-		libcobalt/strtonum.c \
-		libcobalt/pwcache.c \
-		libcobalt/setmode.c \
-		libcobalt/warnc.c \
-		libcobalt/vwarnc.c \
-		libcobalt/malloc.c \
-		libcobalt/errc.c \
-		libcobalt/verrc.c \
-		libcobalt/getbsize.c \
-		libcobalt/fmt_scaled.c \
-		libcobalt/ohash.c \
-		libcobalt/base64.c \
-		libcobalt/vis.c \
-		libcobalt/unvis.c \
-		libcobalt/strmode.c \
-		libcobalt/siphash.c \
-		libcobalt/radixsort.c \
-		libcobalt/icdb.c \
-		libcobalt/md5.c \
-		libcobalt/rmd160.c \
-		libcobalt/sha1.c \
-		libcobalt/sha2.c \
-		libcobalt/readpassphrase.c \
-		libcobalt/strlcpy.c \
-		libcobalt/strlcat.c \
-		libcobalt/fgetln.c \
-		-o $@
-
-make/generate: libcobalt/libcobalt.so
-	$(CC) make/generate.c make/stats.c make/memory.c $(CFLAGS) -o $@
-
-make/varhashconsts.h: make/generate
-	LD_LIBRARY_PATH=libcobalt ./make/generate 1 ${MAGICVARSLOTS} > $@
-
-make/condhashconsts.h: make/generate
-	LD_LIBRARY_PATH=libcobalt ./make/generate 2 ${MAGICCONDSLOTS} > $@
-
-make/nodehashconsts.h: make/generate
-	LD_LIBRARY_PATH=libcobalt ./make/generate 3 0 > $@
-
-make/make: make/varhashconsts.h make/condhashconsts.h make/nodehashconsts.h
-	$(CC) \
-		make/main.c \
-		make/arch.c \
-		make/buf.c \
-		make/cmd_exec.c \
-		make/compat.c \
-		make/cond.c \
-		make/dir.c \
-		make/direxpand.c \
-		make/dump.c \
-		make/engine.c \
-		make/enginechoice.c \
-		make/error.c \
-		make/expandchildren.c \
-		make/for.c \
-		make/init.c \
-		make/job.c \
-		make/lowparse.c \
-		make/make.c \
-		make/parse.c \
-		make/parsevar.c \
-		make/str.c \
-		make/suff.c \
-		make/targ.c \
-		make/targequiv.c \
-		make/timestamp.c \
-		make/var.c \
-		make/varmodifiers.c \
-		make/varname.c \
-		make/memory.c \
-		make/stats.c \
-		make/lst.lib/lstAddNew.c \
-		make/lst.lib/lstAppend.c \
-		make/lst.lib/lstConcat.c \
-		make/lst.lib/lstConcatDestroy.c \
-		make/lst.lib/lstDeQueue.c \
-		make/lst.lib/lstDestroy.c \
-		make/lst.lib/lstDupl.c \
-		make/lst.lib/lstFindFrom.c \
-		make/lst.lib/lstForEachFrom.c \
-		make/lst.lib/lstInsert.c \
-		make/lst.lib/lstMember.c \
-		make/lst.lib/lstRemove.c \
-		make/lst.lib/lstReplace.c \
-		make/lst.lib/lstRequeue.c \
-		make/lst.lib/lstSucc.c \
-		-Wl,-rpath=$(PWD)/libcobalt -Imake $(CFLAGS) -o $@
+all:
+	$(MAKE) -C libcobalt
+	$(MAKE) -C doas
+	$(MAKE) -C fortune
+	EXECNAME=cbtutils LIBS=-lcurses ./crunchgen/genmakefile.sh > cbtutils-makefile
+	$(MAKE) CFLAGS="$(CFLAGS)" -f cbtutils-makefile
 
 clean:
-	rm -fv libcobalt/libcobalt.so make/generate make/varhashconsts.h make/condhashconsts.h make/nodehashconsts.h make/make
+	rm -rfv cbtutils-makefile crunchgen/cbtutils crunchgen/entry_points.h
+	$(MAKE) -C libcobalt clean
+	$(MAKE) -C doas clean
+	$(MAKE) -C fortune clean
+	find . -name "*.o" -delete
+
+install:
+	$(MAKE) -C doas install
+	$(MAKE) -C fortune install-datfiles
+	$(MAKE) -C units install-lib
+	$(MAKE) -C libcobalt install-includes
+	install -D crunchgen/cbtutils $(DESTDIR)$(BINDIR)/cbtutils
+	mkdir -p $(DESTDIR)$(SBINDIR)
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/cp
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/mv
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/make
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/fortune
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/grdc
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/locale
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/ls
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/number
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/tetris
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/units
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/arch
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/awk
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/banner
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/basename
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/cat
+	ln -sf ../bin/cbtutils $(DESTDIR)$(SBINDIR)/chroot
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/cmp
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/comm
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/cut
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/date
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/dd
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/diff
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/dirname
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/echo
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/env
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/expr
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/false
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/fold
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/getconf
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/getopt
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/head
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/hostname
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/indent
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/jot
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/kill
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/ln
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/logger
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/logname
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/m4
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/mkdir
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/mktemp
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/nl
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/printenv
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/printf
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/pwd
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/readlink
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/realpath
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/rev
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/rm
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/rmdir
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/rs
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/seq
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/sleep
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/split
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/tail
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/timeout
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/touch
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/tr
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/true
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/tsort
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/tty
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/uname
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/unifdef
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/uniq
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/unvis
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/vis
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/wc
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/yes
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/freq
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/unicode
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/getent
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/entropy
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/wisdom
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/shsecret
+	# `version` utility is deliberately un-symlinked
+	mkdir -p $(DESTDIR)/usr/share
+	cp -rf make/mk $(DESTDIR)/usr/share/
+
+#TODO: install libcobalt headers
+#TODO: other bsd man pages?

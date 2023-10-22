@@ -1,1 +1,0 @@
-.include <bsd.prog.mk>

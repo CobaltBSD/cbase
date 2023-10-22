@@ -27,19 +27,25 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <sys/cdefs.h>
 #include <sys/types.h>
+#include <sys/file.h>
 #include <string.h>
 
-#ifdef __GLIBC__
 char *
 fgetln(FILE *stream, size_t *len)
 {
 	static char *line = NULL;
 	static size_t line_len = 0;
 	ssize_t nread;
+	int fd = fileno(stream);
+	flock(fd, LOCK_SH);
 
 	nread = getline(&line, &line_len, stream);
+	
+	flock(fd, LOCK_UN);
+
 	/* Note: the getdelim/getline API ensures nread != 0. */
 	if (nread == -1) {
 		*len = 0;
@@ -49,6 +55,3 @@ fgetln(FILE *stream, size_t *len)
 		return line;
 	}
 }
-#else
-#error "Function fgetln() needs to be ported."
-#endif

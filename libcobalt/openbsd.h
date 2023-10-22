@@ -9,10 +9,18 @@
 #include <sys/types.h>
 #include <sys/cdefs.h>
 #include <signal.h>
+#include<stddef.h>
 
 #define GID_MAX 65535
 #define UID_MAX 65535
+
+#ifndef __dead
 #define __dead
+#endif
+
+#ifndef DEFFILEMODE
+#define DEFFILEMODE (S_IRUSR|S_IWUSR|S_IRGRP|S_IWGRP|S_IROTH|S_IWOTH) // 0666
+#endif
 
 #define S_ISTXT S_ISVTX
 
