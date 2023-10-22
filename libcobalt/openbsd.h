@@ -224,3 +224,7 @@ int sradixsort(const u_char **a, int n, const u_char *tab, u_int endch);
 size_t strlcpy(char *dst, const char *src, size_t dsize);
 size_t strlcat(char *dst, const char *src, size_t dsize);
 char *fgetln(FILE *stream, size_t *len);
+
+#ifndef _XOPEN_PATH_MAX
+#define _XOPEN_PATH_MAX 1024
+#ifdef
