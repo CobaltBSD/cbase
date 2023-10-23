@@ -1,5 +1,5 @@
-#include<stdio.h>
-#include<zxcvbn.h>
+#include <stdio.h>
+#include <zxcvbn.h>
 
 int main(void) {
 	char in[BUFSIZ] = {0};

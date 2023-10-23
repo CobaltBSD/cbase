@@ -33,8 +33,10 @@
  * SUCH DAMAGE.
  */
 
-#include<openbsd.h>
-#include<time.h>
+#define _GNU_SOURCE
+
+#include <openbsd.h>
+#include <time.h>
 
 #include <sys/stat.h>
 

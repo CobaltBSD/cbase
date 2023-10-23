@@ -43,7 +43,7 @@ clean:
 libcobalt.so: $(OBJS)
 	$(CC) -fPIC -shared $(CFLAGS) $(LDFLAGS) $(OBJS) -o $@
 
-includes-install:
+install-includes:
 	mkdir -p "${DESTDIR}/usr/include/sys"
 	for i in ${HDRS}; do \
 		j="cmp -s $$i ${DESTDIR}/usr/include/$$i || \

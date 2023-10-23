@@ -1,4 +1,4 @@
-CFLAGS += -lzxcvbn -Ilibcobalt -Llibcobalt -lcobalt
+CFLAGS += -lzxcvbn -Ilibcobalt -Llibcobalt -lcobalt -lm
 
 all:
 	$(MAKE) -C libcobalt
@@ -88,6 +88,7 @@ install:
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/entropy
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/wisdom
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/shsecret
+	ln -sf cbtutils $(DESTDIR)$(BINDIR)/unifdef
 	# `version` utility is deliberately un-symlinked
 	mkdir -p $(DESTDIR)/usr/share
 	cp -rf make/mk $(DESTDIR)/usr/share/

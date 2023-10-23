@@ -16,11 +16,13 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+#define _XOPEN_SOURCE
+
 #ifndef SMALL
 #include <stdio.h>
 #include <stdlib.h>
 #include <wchar.h>
-#include<fts.h>
+#include <fts.h>
 
 extern int f_nonprint;
 

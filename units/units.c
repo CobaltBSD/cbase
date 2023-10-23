@@ -18,6 +18,8 @@
  * improvements you might make to this program.
  */
 
+#include "openbsd.h"
+
 #include <ctype.h>
 #include <stdio.h>
 #include <string.h>

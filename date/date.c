@@ -31,6 +31,8 @@
  */
 
 #define _XOPEN_SOURCE
+#define _POSIX_C_SOURCE 200112L
+#define _DEFAULT_SOURCE
 
 #include <openbsd.h>
 

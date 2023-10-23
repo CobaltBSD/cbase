@@ -29,7 +29,9 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include<openbsd.h>
+#define _GNU_SOURCE
+
+#include <openbsd.h>
 
 #include <ctype.h>
 #include <err.h>

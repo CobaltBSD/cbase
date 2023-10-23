@@ -33,7 +33,10 @@
  * SUCH DAMAGE.
  */
 
-#include<openbsd.h>
+#define _XOPEN_SOURCE
+#define _DEFAULT_SOURCE
+
+#include <openbsd.h>
 
 #include <ctype.h>
 #include <err.h>

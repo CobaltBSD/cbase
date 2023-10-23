@@ -1,12 +1,14 @@
-#include<sys/stat.h>
-#include<stdio.h>
-#include<string.h>
-#include<stdlib.h>
-#include<wchar.h>
-#include<fts.h>
+#define _XOPEN_SOURCE 500
 
-#include"ls.h"
-#include"extern.h"
+#include <sys/stat.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <wchar.h>
+#include <fts.h>
+
+#include "ls.h"
+#include "extern.h"
 
 int
 colorprint(FTSENT *p)

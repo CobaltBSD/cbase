@@ -38,6 +38,8 @@
  * of token scanned.
  */
 
+#include "openbsd.h"
+
 #include <stdio.h>
 #include <ctype.h>
 #include <stdlib.h>
