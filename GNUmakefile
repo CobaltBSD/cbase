@@ -1,4 +1,6 @@
 CFLAGS += -lzxcvbn -Ilibcobalt -Llibcobalt -lcobalt -lm
+BINDIR := /usr/bin
+SBINDIR := /usr/sbin
 
 all:
 	$(MAKE) -C libcobalt
@@ -90,8 +92,6 @@ install:
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/shsecret
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/unifdef
 	# `version` utility is deliberately un-symlinked
-	mkdir -p $(DESTDIR)/usr/share
-	cp -rf make/mk $(DESTDIR)/usr/share/
 
 #TODO: install libcobalt headers
 #TODO: other bsd man pages?

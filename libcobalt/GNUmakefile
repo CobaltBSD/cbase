@@ -44,7 +44,6 @@ libcobalt.so: $(OBJS)
 	$(CC) -fPIC -shared $(CFLAGS) $(LDFLAGS) $(OBJS) -o $@
 
 install-includes:
-	mkdir -p "${DESTDIR}/usr/include/sys"
 	for i in ${HDRS}; do \
 		j="cmp -s $$i ${DESTDIR}/usr/include/$$i || \
 		install -m 644 $$i ${DESTDIR}/usr/include"; \

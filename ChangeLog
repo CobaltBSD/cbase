@@ -1,5 +1,5 @@
 0.12 - ...
-* Fixed installation bug
+* Fixed numerous installation bugs
 * Removed fts, cdefs and logwtmp from libcobalt
 * Various small musl-to-glibc adaptions for libcobalt
 * Added strlcpy, strlcat and fgetln to libcobalt

@@ -7,7 +7,8 @@ clean:
 
 install-datfiles: $(BLDS)
 	install -d -m 755 $(DESTDIR)/usr/share/fortunes
-	install -D -m 644 $(BLDS) $(DESTDIR)/usr/share/fortunes
+	install -m 644 $(BLDS) $(DESTDIR)/usr/share/fortunes
+	install -m 644 $(addprefix datfiles/,$(basename $(BLDS))) $(DESTDIR)/usr/share/fortunes # Also need uncompiled files
 
 $(BLDS): strfile/strfile
 	./strfile/strfile -s datfiles/$(basename $@) $@
