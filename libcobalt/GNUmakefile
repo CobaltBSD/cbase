@@ -38,18 +38,25 @@ OBJS =	pledge.o \
 all: libcobalt.so
 
 clean:
-	rm -fv *.o libcobalt.so
+	rm -fv *.o libcobalt.so libmd.so libbsd.so
 
 libcobalt.so: $(OBJS)
 	$(CC) -fPIC -shared $(CFLAGS) $(LDFLAGS) $(OBJS) -o $@
 
-install-includes:
+install-extras:
+	install -m644 -d "${DESTDIR}/usr/include"
 	for i in ${HDRS}; do \
 		j="cmp -s $$i ${DESTDIR}/usr/include/$$i || \
 		install -m 644 $$i ${DESTDIR}/usr/include"; \
 		echo $$j; \
 		eval "$$j"; \
 	done
+	install -m644 -d "${DESTDIR}/usr/lib"
+	ln -fs libcobalt.so "${DESTDIR}/usr/lib/libmd.so"
+	ln -fs libcobalt.so "${DESTDIR}/usr/lib/libbsd.so"
+	install -m755 libcobalt.so "${DESTDIR}/usr/lib"
+	install -m644 -d "${DESTDIR}/usr/lib/pkgconfig"
+	install -m644 libbsd.pc libmd.pc libcobalt.pc "${DESTDIR}/usr/lib/pkgconfig"
 
 $(OBJS):
 	$(CC) $(CFLAGS) $(LDFLAGS) -c $(basename $@).c

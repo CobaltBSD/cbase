@@ -1,13 +1,13 @@
-CFLAGS += -lzxcvbn -Ilibcobalt -Llibcobalt -lcobalt -lm
+CFLAGS += -lzxcvbn -Ilibcobalt -Llibcobalt -lcobalt -lm -lncurses
 BINDIR := /usr/bin
 SBINDIR := /usr/sbin
 
 all:
-	$(MAKE) -C libcobalt
+	$(MAKE) CFLAGS=-fPIC -C libcobalt
 	$(MAKE) -C doas
 	$(MAKE) -C fortune
-	EXECNAME=cbtutils LIBS=-lcurses ./crunchgen/genmakefile.sh > cbtutils-makefile
-	$(MAKE) CFLAGS="$(CFLAGS)" -f cbtutils-makefile
+	EXECNAME=cbtutils LIBS=-lncurses ./crunchgen/genmakefile.sh > cbtutils-makefile
+	$(MAKE) -f cbtutils-makefile
 
 clean:
 	rm -rfv cbtutils-makefile crunchgen/cbtutils crunchgen/entry_points.h
@@ -20,7 +20,7 @@ install:
 	$(MAKE) -C doas install
 	$(MAKE) -C fortune install-datfiles
 	$(MAKE) -C units install-lib
-	$(MAKE) -C libcobalt install-includes
+	$(MAKE) -C libcobalt install-extras
 	install -D crunchgen/cbtutils $(DESTDIR)$(BINDIR)/cbtutils
 	mkdir -p $(DESTDIR)$(SBINDIR)
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/cp
@@ -92,6 +92,12 @@ install:
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/shsecret
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/unifdef
 	# `version` utility is deliberately un-symlinked
+	install -m644 -d "${DESTDIR}/usr/share/man"
+	cp -rf doc/man1 "${DESTDIR}/usr/share/man"
+	cp -rf doc/man3 "${DESTDIR}/usr/share/man"
+	cp -rf doc/man5 "${DESTDIR}/usr/share/man"
+	cp -rf doc/man6 "${DESTDIR}/usr/share/man"
+	cp -rf doc/man8 "${DESTDIR}/usr/share/man"
 
 #TODO: install libcobalt headers
 #TODO: other bsd man pages?

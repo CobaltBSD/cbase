@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <locale.h>
+#include <wchar.h>
 
 int tflag = 0; // If not a range, if there should be a line break in between characters
 int nflag = 0; // Convert characters to ASCII
@@ -13,7 +14,7 @@ void usage(void) {
 }
 
 int main(int argc, char *argv[]) {
-	(void) setlocale(LC_ALL, "UTF-8");
+	setlocale(LC_CTYPE, "");
 	int c;
 
 	while ((c = getopt(argc, argv, "tn")) != -1) {
@@ -59,7 +60,7 @@ int main(int argc, char *argv[]) {
 			}
 
 			for (; c1 < c2; c1++) {
-				printf("%04lx %lc\n", c1, (wchar_t) c1);
+				wprintf(L"%04lx %lc\n", c1, (wchar_t) c1);
 			}
 		} else {
 			long c = strtol(argv[0], NULL, 16);

@@ -1,4 +1,4 @@
-0.12 - ...
+0.12 - Nov 1 2023
 * Fixed numerous installation bugs
 * Removed fts, cdefs and logwtmp from libcobalt
 * Various small musl-to-glibc adaptions for libcobalt
@@ -8,6 +8,9 @@
 * Removed m4, awk, getent, getconf and env
 * Improved verbose `rm` text
 * Move <sys/tree.h> header to <tree.h>
+* Added pkg-config files
+* libcobalt is now a drop-in replacement for libbsd and libmd
+* Fixed `unicode` locale
 
 0.11 - Sep 17 2023
 * Removed orphaned binary
