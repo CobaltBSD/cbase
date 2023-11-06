@@ -16,8 +16,6 @@
  */
 
 %{
-#include <openbsd.h>
-
 #include <sys/types.h>
 #include <ctype.h>
 #include <err.h>

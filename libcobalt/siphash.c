@@ -47,7 +47,6 @@
 
 #include <sys/param.h>
 
-//#include "openbsd.h"
 #include <sys/endian.h>
 #include "siphash.h"
 
