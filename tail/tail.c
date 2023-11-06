@@ -32,7 +32,8 @@
  * SUCH DAMAGE.
  */
 
-#include <openbsd.h>
+#include <pledge.h>
+#include <bsd/string.h>
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -61,6 +62,7 @@ main(int argc, char *argv[])
 	int i;
 	char *p;
 
+	__pledge_mode = PLEDGE_PENALTY_KILL_PROCESS | PLEDGE_STDERR_LOGGING;
 	if (pledge("stdio rpath", NULL) == -1)
 		err(1, "pledge");
 
@@ -168,9 +170,6 @@ main(int argc, char *argv[])
 			forward(tf, i, style, off);
 	}
 	else {
-		if (pledge("stdio", NULL) == -1)
-			err(1, "pledge");
-
 		tf[0].fname = "stdin";
 		tf[0].fp = stdin;
 

@@ -48,7 +48,9 @@
  * in "to") to form the final target path.
  */
 
-#include <openbsd.h>
+#include <pledge.h>
+#include <bsd/string.h>
+#include <bsd/err.h>
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -141,6 +143,7 @@ main(int argc, char *argv[])
 	 * Unfortunately, -R will use mkfifo & mknod;
 	 * -p will use fchown, fchmod, lchown, fchflags..
 	 */
+	__pledge_mode = PLEDGE_PENALTY_KILL_PROCESS | PLEDGE_STDERR_LOGGING;
 	if (Rflag == 0 && pflag == 0)
 		if (pledge("stdio rpath wpath cpath fattr", NULL) == -1)
 			err(1, "pledge");

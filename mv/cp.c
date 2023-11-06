@@ -48,7 +48,10 @@
  * in "to") to form the final target path.
  */
 
-#include <openbsd.h>
+#include <bsd/unistd.h>
+#include <bsd/sys/cdefs.h>
+#include <bsd/err.h>
+#include <bsd/string.h>
 
 #include <sys/types.h>
 #include <sys/stat.h>

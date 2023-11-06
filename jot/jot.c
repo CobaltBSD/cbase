@@ -38,7 +38,9 @@
 
 #define _GNU_SOURCE
 
-#include <openbsd.h>
+#include <bsd/sys/cdefs.h>
+#include <bsd/stdlib.h>
+#include <pledge.h>
 #include <time.h>
 
 #include <ctype.h>
@@ -93,7 +95,8 @@ main(int argc, char *argv[])
 	int		ch;
 	const char	*errstr;
 
-	if (pledge("stdio", NULL) == -1)
+	__pledge_mode = PLEDGE_PENALTY_KILL_PROCESS | PLEDGE_STDERR_LOGGING;
+	if (pledge("stdio rpath", NULL) == -1)
 		err(1, "pledge");
 
 	while ((ch = getopt(argc, argv, "b:cnp:rs:w:")) != -1) {

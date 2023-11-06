@@ -28,7 +28,10 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <openbsd.h>
+#include <bsd/sys/cdefs.h>
+#include <bsd/signal.h>
+#include <bsd/stdlib.h>
+#include <pledge.h>
 
 #include <sys/types.h>
 #include <sys/time.h>
@@ -188,9 +191,6 @@ main(int argc, char **argv)
 		{ NULL,              0,                 NULL,         0 }
 	};
 
-	if (pledge("stdio proc exec", NULL) == -1)
-		err(1, "pledge");
-
 	while ((ch = getopt_long(argc, argv, "+fk:ps:h", longopts, NULL))
 	    != -1) {
 		switch (ch) {
@@ -267,6 +267,7 @@ main(int argc, char **argv)
 
 	/* parent continues here */
 
+	__pledge_mode = PLEDGE_PENALTY_KILL_PROCESS | PLEDGE_STDERR_LOGGING;
 	if (pledge("stdio proc", NULL) == -1)
 		err(1, "pledge");
 

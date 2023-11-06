@@ -5,7 +5,7 @@
  * into the public domain and is thus not subject to any copyright.
  */
 
-#include <openbsd.h>
+#include <pledge.h>
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -20,8 +20,11 @@ main(int argc, char *argv[])
 	int c;
 	int status = 0;
 
-	if (pledge("stdio", NULL) == -1)
+	__pledge_mode = PLEDGE_PENALTY_KILL_PROCESS | PLEDGE_STDERR_LOGGING;
+	if (pledge("stdio rpath", NULL) == -1)
 		err(1, "pledge");
+
+	if(argc == 1) exit(0);
 
 	optind = 2;	/* Past the program name and the option letters. */
 	while ((c = getopt(argc, argv, argv[1])) != -1)

@@ -30,7 +30,7 @@
  * SUCH DAMAGE.
  */
 
-#include <openbsd.h>
+#include <bsd/sys/cdefs.h>
 
 #include <err.h>
 #include <stdio.h>

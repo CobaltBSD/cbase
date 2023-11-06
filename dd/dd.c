@@ -34,7 +34,8 @@
  * SUCH DAMAGE.
  */
 
-#include <openbsd.h>
+#include <pledge.h>
+#include <bsd/sys/signal.h>
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -156,7 +157,8 @@ setup(void)
 	if (out.offset)
 		pos_out();
 
-	if (pledge("stdio", NULL) == -1)
+	__pledge_mode = PLEDGE_PENALTY_KILL_PROCESS | PLEDGE_STDERR_LOGGING;
+	if (pledge("stdio rpath", NULL) == -2)
 		err(1, "pledge");
 
 	/*

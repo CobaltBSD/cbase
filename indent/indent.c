@@ -32,7 +32,8 @@
  * SUCH DAMAGE.
  */
 
-#include <openbsd.h>
+#include <pledge.h>
+#include <bsd/err.h>
 
 #include <fcntl.h>
 #include <unistd.h>
@@ -204,6 +205,7 @@ main(int argc, char **argv)
 
     int         last_else = 0;	/* true iff last keyword was an else */
 
+    __pledge_mode = PLEDGE_PENALTY_KILL_PROCESS | PLEDGE_STDERR_LOGGING;
     if (pledge("stdio rpath wpath cpath", NULL) == -1)
 	err(1, "pledge");
 

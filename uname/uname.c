@@ -31,7 +31,9 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <openbsd.h>
+#include <bsd/sys/cdefs.h>
+#include <pledge.h>
+#include <bsd/sys/param.h>
 
 #include <sys/param.h>	/* MACHINE_ARCH */
 #include <sys/utsname.h>
@@ -59,7 +61,8 @@ main(int argc, char *argv[])
 	int space = 0;
 	int print_mask = 0;
 
-	if (pledge("stdio", NULL) == -1)
+	__pledge_mode = PLEDGE_PENALTY_KILL_PROCESS | PLEDGE_STDERR_LOGGING;
+	if (pledge("stdio rpath", NULL) == -1)
 		err(1, "pledge");
 
 	while ((c = getopt(argc, argv, "amnrsvp")) != -1 ) {

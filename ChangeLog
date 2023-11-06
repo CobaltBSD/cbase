@@ -1,3 +1,9 @@
+0.13 - ...
+* Added OpenBSD `pledge()`
+* Moved definitions to be compatible with libbsd
+* Enabled pledge for most programs
+* Fixed segfault in getopt
+
 0.12 - Nov 1 2023
 * Fixed numerous installation bugs
 * Removed fts, cdefs and logwtmp from libcobalt

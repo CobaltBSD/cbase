@@ -30,7 +30,9 @@
  * SUCH DAMAGE.
  */
 
-#include <openbsd.h>
+#include <pledge.h>
+#include <bsd/stdlib.h>
+#include <bsd/signal.h>
 
 #include <ctype.h>
 #include <err.h>
@@ -55,6 +57,7 @@ main(int argc, char *argv[])
 	int errors, numsig, pid;
 	const char *errstr;
 
+	__pledge_mode = PLEDGE_PENALTY_KILL_PROCESS | PLEDGE_STDERR_LOGGING;
 	if (pledge("stdio proc", NULL) == -1)
 		err(1, "pledge");
 

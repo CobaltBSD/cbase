@@ -16,7 +16,9 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#include <openbsd.h>
+#include <bsd/sys/cdefs.h>
+#include <bsd/stdio.h>
+#include <pledge.h>
 
 #include <assert.h>
 #include <ctype.h>
@@ -994,13 +996,11 @@ main(int argc, char *argv[])
 {
 	struct ohash 	pairs;
 
-	if (pledge("stdio rpath", NULL) == -1)
+	__pledge_mode = PLEDGE_PENALTY_KILL_PROCESS | PLEDGE_STDERR_LOGGING;
+	if (pledge("stdio rpath flock", NULL) == -1)
 		err(1, "pledge");
 
 	parse_args(argc, argv, &pairs);
-
-	if (pledge("stdio", NULL) == -1)
-		err(1, "pledge");
 
 	return tsort(&pairs);
 }

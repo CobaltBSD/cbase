@@ -16,7 +16,12 @@
  */
 
 #define _GNU_SOURCE
-#include <openbsd.h>
+
+#include <bsd/string.h>
+#include <bsd/limits.h>
+#include <bsd/sys/cdefs.h>
+#include <bsd/err.h>
+#include <bsd/stdlib.h>
 
 #include <sys/types.h>
 #include <sys/stat.h>

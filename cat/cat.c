@@ -32,7 +32,9 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  */
-#include <openbsd.h>
+
+#include <pledge.h>
+#include <bsd/stdlib.h>
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -60,6 +62,7 @@ main(int argc, char *argv[])
 {
 	int ch;
 
+	__pledge_mode = PLEDGE_PENALTY_KILL_PROCESS | PLEDGE_STDERR_LOGGING;
 	if (pledge("stdio rpath", NULL) == -1)
 		err(1, "pledge");
 
@@ -96,7 +99,7 @@ main(int argc, char *argv[])
 	argv += optind;
 
 	if (argc == 0) {
-		if (pledge("stdio", NULL) == -1)
+		if (pledge("stdio rpath", NULL) == -1)
 			err(1, "pledge");
 
 		cat_file(NULL);

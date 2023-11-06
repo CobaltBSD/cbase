@@ -39,7 +39,9 @@
  * Tetris (or however it is spelled).
  */
 
-#include <openbsd.h>
+#include <bsd/err.h>
+#include <bsd/string.h>
+#include <bsd/stdlib.h>
 #include <time.h>
 
 #include <err.h>
@@ -50,6 +52,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <stdint.h>
 
 #include "input.h"
 #include "scores.h"

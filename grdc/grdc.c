@@ -13,7 +13,8 @@
 
 #define _GNU_SOURCE
 
-#include <openbsd.h>
+#include <bsd/stdlib.h>
+#include <signal.h>
 
 #include <sys/ioctl.h>
 

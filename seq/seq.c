@@ -31,7 +31,9 @@
 
 #define _GNU_SOURCE
 
-#include <openbsd.h>
+#include <bsd/sys/cdefs.h>
+#include <pledge.h>
+#include <bsd/stdlib.h>
 
 #include <ctype.h>
 #include <err.h>
@@ -102,7 +104,8 @@ main(int argc, char *argv[])
 	char *cur_print, *last_print, *prev_print;
 	char pad = ZERO;
 
-	if (pledge("stdio", NULL) == -1)
+	__pledge_mode = PLEDGE_PENALTY_KILL_PROCESS | PLEDGE_STDERR_LOGGING;
+	if (pledge("stdio rpath", NULL) == -1)
 		err(1, "pledge");
 
 	/* Determine the locale's decimal point. */

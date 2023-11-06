@@ -30,7 +30,7 @@
  * SUCH DAMAGE.
  */
 
-#include <openbsd.h>
+#include <pledge.h>
 
 #include <sys/types.h>
 
@@ -56,6 +56,7 @@ main(int argc, char *argv[])
 	setlocale(LC_CTYPE, "");
 	multibyte = MB_CUR_MAX > 1;
 
+	__pledge_mode = PLEDGE_PENALTY_KILL_PROCESS | PLEDGE_STDERR_LOGGING;
 	if (pledge("stdio rpath", NULL) == -1)
 		err(1, "pledge");
 
@@ -70,9 +71,6 @@ main(int argc, char *argv[])
 
 	rval = 0;
 	if (argc == 0) {
-		if (pledge("stdio", NULL) == -1)
-			err(1, "pledge");
-
 		rval = rev_file(NULL);
 	} else {
 		for (; *argv != NULL; argv++)

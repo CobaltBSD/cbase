@@ -29,7 +29,8 @@
  * SUCH DAMAGE.
  */
 
-#include <openbsd.h>
+#include <pledge.h>
+#include <bsd/stdlib.h>
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -56,6 +57,7 @@ main(int argc, char *argv[])
 	long	linecnt = 10;
 	int	status = 0;
 
+	__pledge_mode = PLEDGE_PENALTY_KILL_PROCESS | PLEDGE_STDERR_LOGGING;
 	if (pledge("stdio rpath", NULL) == -1)
 		err(1, "pledge");
 
@@ -83,7 +85,7 @@ main(int argc, char *argv[])
 	argc -= optind, argv += optind;
 
 	if (argc == 0) {
-		if (pledge("stdio", NULL) == -1)
+		if (pledge("stdio rpath", NULL) == -1)
 			err(1, "pledge");
 
 		status = head_file(NULL, linecnt, 0);

@@ -17,10 +17,9 @@
 
 #define _GNU_SOURCE
 
-#include <openbsd.h>
-
 #include <sys/types.h>
-#include <tree.h>
+#include <sys/tree.h>
+#include <bsd/string.h>
 
 #include <string.h>
 #include <stdio.h>

@@ -29,7 +29,9 @@
  * SUCH DAMAGE.
  */
 
-#include <openbsd.h>
+#include <bsd/sys/cdefs.h>
+#include <pledge.h>
+#include <bsd/err.h>
 
 #include <ctype.h>
 #include <err.h>
@@ -81,7 +83,8 @@ main(int argc, char *argv[])
 	char convch, nextch;
 	char *format;
 
-	if (pledge("stdio", NULL) == -1)
+	__pledge_mode = PLEDGE_PENALTY_KILL_PROCESS | PLEDGE_STDERR_LOGGING;
+	if (pledge("stdio rpath", NULL) == -1)
 		err(1, "pledge");
 
 	/* Need to accept/ignore "--" option. */

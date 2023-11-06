@@ -30,7 +30,8 @@
  * SUCH DAMAGE.
  */
 
-#include <openbsd.h>
+#include <pledge.h>
+#include <bsd/stdlib.h>
 
 #include <errno.h>
 #include <unistd.h>
@@ -97,7 +98,8 @@ main(int argc, char *argv[])
 	openlog(tag ? tag : getlogin(), logflags, 0);
 	(void) fclose(stdout);
 
-	if (pledge("stdio", NULL) == -1)
+	__pledge_mode = PLEDGE_PENALTY_KILL_PROCESS | PLEDGE_STDERR_LOGGING;
+	if (pledge("stdio rpath unix", NULL) == -1)
 		err(1, "pledge");
 
 	/* log input line if appropriate */

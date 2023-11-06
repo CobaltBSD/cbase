@@ -36,7 +36,9 @@
 #define _XOPEN_SOURCE
 #define _DEFAULT_SOURCE
 
-#include <openbsd.h>
+#include <bsd/sys/cdefs.h>
+#include <pledge.h>
+#include <bsd/stdlib.h>
 
 #include <ctype.h>
 #include <err.h>
@@ -66,7 +68,8 @@ main(int argc, char *argv[])
 
 	setlocale(LC_CTYPE, "");
 
-	if (pledge("stdio rpath", NULL) == -1)
+	__pledge_mode = PLEDGE_PENALTY_KILL_PROCESS | PLEDGE_STDERR_LOGGING;
+	if (pledge("stdio rpath cpath", NULL) == -1)
 		err(1, "pledge");
 
 	width = 0;
@@ -113,7 +116,7 @@ main(int argc, char *argv[])
 		width = DEFLINEWIDTH;
 
 	if (!*argv) {
-		if (pledge("stdio", NULL) == -1)
+		if (pledge("stdio rpath cpath", NULL) == -1)
 			err(1, "pledge");
 		fold(width);
 	} else {

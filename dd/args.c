@@ -34,7 +34,7 @@
  * SUCH DAMAGE.
  */
 
-#include <openbsd.h>
+#include <bsd/err.h>
 
 #include <sys/types.h>
 #include <sys/time.h>

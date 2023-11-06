@@ -1,9 +1,9 @@
-CFLAGS += -lzxcvbn -Ilibcobalt -Llibcobalt -lcobalt -lm -lncurses
+CFLAGS += -lzxcvbn -Ilibcobalt/include -Llibcobalt -lcobalt -lm -lncurses
 BINDIR := /usr/bin
 SBINDIR := /usr/sbin
 
 all:
-	$(MAKE) CFLAGS=-fPIC -C libcobalt
+	$(MAKE) -C libcobalt
 	$(MAKE) -C doas
 	$(MAKE) -C fortune
 	EXECNAME=cbtutils LIBS=-lncurses ./crunchgen/genmakefile.sh > cbtutils-makefile
@@ -92,7 +92,7 @@ install:
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/shsecret
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/unifdef
 	# `version` utility is deliberately un-symlinked
-	install -m644 -d "${DESTDIR}/usr/share/man"
+	install -m755 -d "${DESTDIR}/usr/share/man"
 	cp -rf doc/man1 "${DESTDIR}/usr/share/man"
 	cp -rf doc/man3 "${DESTDIR}/usr/share/man"
 	cp -rf doc/man5 "${DESTDIR}/usr/share/man"

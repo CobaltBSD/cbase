@@ -33,7 +33,12 @@
  * SUCH DAMAGE.
  */
 
-#include <openbsd.h>
+#include <bsd/string.h>
+#include <bsd/util.h>
+#include <pledge.h>
+#include <bsd/pwd.h>
+#include <bsd/grp.h>
+#include <bsd/stdlib.h>
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -125,6 +130,10 @@ ls_main(int argc, char *argv[])
 		termwidth = win.ws_col;
 	if (termwidth == 0)
 		termwidth = 80;
+
+	__pledge_mode = PLEDGE_PENALTY_KILL_PROCESS | PLEDGE_STDERR_LOGGING;
+	if (pledge("stdio rpath cpath tty", NULL) == -1)
+		err(1, "pledge");
 
 	/* Root is -A automatically. */
 	if (!getuid())

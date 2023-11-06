@@ -33,7 +33,10 @@
  * SUCH DAMAGE.
  */
 
-#include <openbsd.h>
+#include <bsd/sys/cdefs.h>
+#include <pledge.h>
+#include <bsd/stdlib.h>
+#include <bsd/string.h>
 
 #include <ctype.h>
 #include <err.h>
@@ -67,6 +70,7 @@ main(int argc, char *argv[])
 
 	setlocale(LC_CTYPE, "");
 
+	__pledge_mode = PLEDGE_PENALTY_KILL_PROCESS | PLEDGE_STDERR_LOGGING;
 	if (pledge("stdio rpath wpath cpath", NULL) == -1)
 		err(1, "pledge");
 
@@ -117,7 +121,7 @@ main(int argc, char *argv[])
 			err(1, "%s", argv[1]);
 	}
 
-	if (pledge("stdio", NULL) == -1)
+	if (pledge("stdio rpath", NULL) == -1)
 		err(1, "pledge");
 
 	prevsize = 0;

@@ -35,7 +35,8 @@
  *		BEWARE: lots of unfinished edges
  */
 
-#include <openbsd.h>
+#include <pledge.h>
+#include <bsd/stdlib.h>
 
 #include <ctype.h>
 #include <err.h>
@@ -104,7 +105,8 @@ main(int argc, char *argv[])
 {
 	setlocale(LC_CTYPE, "");
 
-	if (pledge("stdio", NULL) == -1)
+	__pledge_mode = PLEDGE_PENALTY_KILL_PROCESS | PLEDGE_STDERR_LOGGING;
+	if (pledge("stdio rpath cpath", NULL) == -1)
 		err(1, "pledge");
 
 	getargs(argc, argv);

@@ -37,7 +37,7 @@
  * here as well.
  */
 
-#include <openbsd.h>
+#include <bsd/err.h>
 
 #include <stdio.h>
 #include <ctype.h>

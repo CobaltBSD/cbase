@@ -49,7 +49,8 @@
  * SUCH DAMAGE.
  */
 
-#include <openbsd.h>
+#include <pledge.h>
+#include <bsd/string.h>
 
 #include <stdio.h>
 #include <unistd.h>
@@ -150,6 +151,7 @@ main(int argc, char *argv[])
 {
 	char word[10+1];			/* strings limited to 10 chars */
 	
+	__pledge_mode = PLEDGE_PENALTY_KILL_PROCESS | PLEDGE_STDERR_LOGGING;
 	if (pledge("stdio", NULL) == -1)
 		err(1, "pledge");
 

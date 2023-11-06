@@ -30,7 +30,8 @@
  * SUCH DAMAGE.
  */
 
-#include <openbsd.h>
+#include <bsd/sys/cdefs.h>
+#include <pledge.h>
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -59,6 +60,7 @@ main(int argc, char *argv[])
 	int ch, fd1, fd2, special;
 	char *file1, *file2;
 
+	__pledge_mode = PLEDGE_PENALTY_KILL_PROCESS | PLEDGE_STDERR_LOGGING;
 	if (pledge("stdio rpath", NULL) == -1)
 		err(ERR_EXIT, "pledge");
 
@@ -99,9 +101,6 @@ main(int argc, char *argv[])
 		file2 = "stdin";
 	} else if ((fd2 = open(file2, O_RDONLY)) == -1)
 		fatal("%s", file2);
-
-	if (pledge("stdio", NULL) == -1)
-		err(ERR_EXIT, "pledge");
 
 	skip1 = (argc > 2) ? get_skip(argv[2], "skip1") : 0;
 	skip2 = (argc == 4) ? get_skip(argv[3], "skip2") : 0;

@@ -23,9 +23,9 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <openbsd.h>
+#include <bsd/sys/cdefs.h>
 
-#include <sys/param.h>	/* MACHINE MACHINE_ARCH */
+#include <bsd/sys/param.h>	/* MACHINE MACHINE_ARCH */
 
 #include <stdio.h>
 #include <stdlib.h>

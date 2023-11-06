@@ -38,7 +38,7 @@
  * of token scanned.
  */
 
-#include "openbsd.h"
+#include <bsd/string.h>
 
 #include <stdio.h>
 #include <ctype.h>

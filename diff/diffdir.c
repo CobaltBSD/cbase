@@ -20,7 +20,8 @@
  * Materiel Command, USAF, under agreement number F39502-99-1-0512.
  */
 
-#include <openbsd.h>
+#include <bsd/string.h>
+#include <bsd/err.h>
 
 #include <sys/stat.h>
 

@@ -2,11 +2,39 @@ LIB=	cobalt
 SHLIB_MAJOR=0
 SHLIB_MINOR=0
 
-CFLAGS += -I. -fPIC
+CFLAGS += -I. -fPIC -Iinclude
 
-HDRS=base64.h icdb.h md5.h ohash.h openbsd.h readpassphrase.h rmd160.h sha1.h sha2.h siphash.h util.h vis.h tree.h
+HDRS=	base64.h \
+	icdb.h \
+	md5.h \
+	ohash.h \
+	readpassphrase.h \
+	rmd160.h \
+	sha1.h \
+	sha2.h \
+	siphash.h \
+	util.h \
+	vis.h \
+	pledge.h \
+	unveil.h \
+	sys/endian.h \
+	sys/tree.h \
+	bsd/err.h \
+	bsd/grp.h \
+	bsd/limits.h \
+	bsd/pwd.h \
+	bsd/signal.h \
+	bsd/stdio.h \
+	bsd/stdlib.h \
+	bsd/string.h \
+	bsd/unistd.h \
+	bsd/sys/cdefs.h \
+	bsd/sys/param.h \
+	bsd/sys/signal.h \
+	bsd/sys/time.h
 
-OBJS =	pledge.o \
+OBJS =  promises.o \
+	pledge.o \
 	getprogname.o \
 	strtonum.o \
 	pwcache.o \
@@ -33,7 +61,10 @@ OBJS =	pledge.o \
 	readpassphrase.o \
 	strlcpy.o \
 	strlcat.o \
-	fgetln.o
+	fgetln.o \
+	parsepromises.o \
+	pledge-linux.o \
+	unveil.o
 
 all: libcobalt.so
 
@@ -44,18 +75,15 @@ libcobalt.so: $(OBJS)
 	$(CC) -fPIC -shared $(CFLAGS) $(LDFLAGS) $(OBJS) -o $@
 
 install-extras:
-	install -m644 -d "${DESTDIR}/usr/include"
+	install -m755 -d "${DESTDIR}/usr/include"
 	for i in ${HDRS}; do \
-		j="cmp -s $$i ${DESTDIR}/usr/include/$$i || \
-		install -m 644 $$i ${DESTDIR}/usr/include"; \
-		echo $$j; \
-		eval "$$j"; \
+		install -D -m 644 include/$$i ${DESTDIR}/usr/include/$$i; \
 	done
-	install -m644 -d "${DESTDIR}/usr/lib"
+	install -m755 -d "${DESTDIR}/usr/lib"
 	ln -fs libcobalt.so "${DESTDIR}/usr/lib/libmd.so"
 	ln -fs libcobalt.so "${DESTDIR}/usr/lib/libbsd.so"
-	install -m755 libcobalt.so "${DESTDIR}/usr/lib"
-	install -m644 -d "${DESTDIR}/usr/lib/pkgconfig"
+	install -m644 libcobalt.so "${DESTDIR}/usr/lib"
+	install -m755 -d "${DESTDIR}/usr/lib/pkgconfig"
 	install -m644 libbsd.pc libmd.pc libcobalt.pc "${DESTDIR}/usr/lib/pkgconfig"
 
 $(OBJS):

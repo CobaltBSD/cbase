@@ -8,7 +8,9 @@
 
 #define _GNU_SOURCE
 
-#include <openbsd.h>
+#include <bsd/sys/cdefs.h>
+#include <bsd/stdlib.h>
+#include <pledge.h>
 
 #include <stdio.h>
 #include <stdint.h>
@@ -500,7 +502,8 @@ main(int argc, char *argv[])
 {
 	struct val     *vp;
 
-	if (pledge("stdio", NULL) == -1)
+	__pledge_mode = PLEDGE_PENALTY_KILL_PROCESS | PLEDGE_STDERR_LOGGING;
+	if (pledge("stdio rpath", NULL) == -1)
 		err(2, "pledge");
 
 	if (argc > 1 && !strcmp(argv[1], "--"))

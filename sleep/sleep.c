@@ -30,7 +30,9 @@
  * SUCH DAMAGE.
  */
 
-#include <openbsd.h>
+#include <bsd/stdlib.h>
+#include <bsd/sys/time.h>
+#include <pledge.h>
 
 #include <sys/time.h>
 
@@ -53,6 +55,7 @@ main(int argc, char *argv[])
 	char *cp;
 	int ch, i;
 
+	__pledge_mode = PLEDGE_PENALTY_KILL_PROCESS | PLEDGE_STDERR_LOGGING;
 	if (pledge("stdio", NULL) == -1)
 		err(1, "pledge");
 

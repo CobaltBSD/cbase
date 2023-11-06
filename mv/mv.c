@@ -33,7 +33,10 @@
  * SUCH DAMAGE.
  */
 
-#include <openbsd.h>
+#include <bsd/err.h>
+#include <bsd/string.h>
+#include <bsd/pwd.h>
+#include <bsd/grp.h>
 #include <sys/statfs.h>
 
 #include <sys/time.h>

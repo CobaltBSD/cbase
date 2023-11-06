@@ -43,8 +43,8 @@
 #include <ctype.h>
 #include <limits.h>
 
-#include "util.h"
-#include "openbsd.h"
+#include <bsd/util.h>
+#include <bsd/string.h>
 
 typedef enum {
 	NONE = 0, KILO = 1, MEGA = 2, GIGA = 3, TERA = 4, PETA = 5, EXA = 6

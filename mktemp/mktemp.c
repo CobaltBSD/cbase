@@ -19,7 +19,8 @@
 
 #define _GNU_SOURCE
 
-#include <openbsd.h>
+#include <bsd/sys/cdefs.h>
+#include <pledge.h>
 
 #include <err.h>
 #include <paths.h>
@@ -42,6 +43,7 @@ main(int argc, char *argv[])
 	char *cp, *template, *tempfile, *prefix = _PATH_TMP;
 	size_t len;
 
+	__pledge_mode = PLEDGE_PENALTY_KILL_PROCESS | PLEDGE_STDERR_LOGGING;
 	if (pledge("stdio rpath wpath cpath", NULL) == -1)
 		err(1, "pledge");
 

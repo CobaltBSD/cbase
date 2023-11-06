@@ -47,7 +47,8 @@
 
 #include <sys/param.h>
 
-#include "openbsd.h"
+//#include "openbsd.h"
+#include <sys/endian.h>
 #include "siphash.h"
 
 static void	SipHash_CRounds(SIPHASH_CTX *, int);

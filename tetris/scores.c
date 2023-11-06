@@ -43,8 +43,7 @@
  * Major whacks since then.
  */
 
-#include "openbsd.h"
-
+#include <bsd/string.h>
 #include <err.h>
 #include <errno.h>
 #include <fcntl.h>

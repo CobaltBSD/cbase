@@ -27,7 +27,7 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <openbsd.h>
+#include <pledge.h>
 
 #include <err.h>
 #include <errno.h>
@@ -46,6 +46,7 @@ main(int argc, char *argv[])
 	int n, ch, nflag = 0, fflag = 0;
 	extern int optind;
 
+	__pledge_mode = PLEDGE_PENALTY_KILL_PROCESS | PLEDGE_STDERR_LOGGING;
 	if (pledge("stdio rpath", NULL) == -1)
 		err(1, "pledge");
 

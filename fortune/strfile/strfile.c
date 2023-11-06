@@ -33,7 +33,8 @@
  * SUCH DAMAGE.
  */
 
-#include <openbsd.h>
+#include <bsd/string.h>
+#include <bsd/stdlib.h>
 #include <time.h>
 
 #include <ctype.h>

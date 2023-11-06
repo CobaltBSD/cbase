@@ -29,8 +29,7 @@
  * SUCH DAMAGE.
  */
 
-#include "openbsd.h"
-
+#include <bsd/string.h>
 #include <ctype.h>
 #include <err.h>
 #include <stdio.h>

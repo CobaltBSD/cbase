@@ -45,7 +45,9 @@
 
 #define _GNU_SOURCE
 
-#include <openbsd.h>
+#include <pledge.h>
+#include <bsd/stdlib.h>
+#include <bsd/string.h>
 
 #include <sys/stat.h>
 
@@ -269,6 +271,7 @@ main(int argc, char *argv[])
 	const char *errstr;
 	int opt;
 
+	__pledge_mode = PLEDGE_PENALTY_KILL_PROCESS | PLEDGE_STDERR_LOGGING;
 	if (pledge("stdio rpath wpath cpath fattr", NULL) == -1)
 		err(1, "pledge");
 

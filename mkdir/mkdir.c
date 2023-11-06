@@ -30,7 +30,9 @@
  * SUCH DAMAGE.
  */
 
-#include <openbsd.h>
+#include <bsd/sys/cdefs.h>
+#include <bsd/unistd.h>
+#include <pledge.h>
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -82,6 +84,7 @@ main(int argc, char *argv[])
 	argv += optind;
 
 	if ((mode & (S_ISUID | S_ISGID | S_ISTXT)) == 0) {
+		__pledge_mode = PLEDGE_PENALTY_KILL_PROCESS | PLEDGE_STDERR_LOGGING;
 		if (pledge("stdio rpath cpath fattr", NULL) == -1)
 			err(1, "pledge");
 	}

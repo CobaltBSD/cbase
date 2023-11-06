@@ -30,7 +30,11 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <openbsd.h>
+#include <bsd/sys/cdefs.h>
+#include <pledge.h>
+#include <bsd/err.h>
+#include <bsd/stdlib.h>
+#include <bsd/limits.h>
 
 #include <err.h>
 #include <errno.h>
@@ -120,6 +124,7 @@ main(int argc, char *argv[])
 
 	(void)setlocale(LC_ALL, "");
 
+	__pledge_mode = PLEDGE_PENALTY_KILL_PROCESS | PLEDGE_STDERR_LOGGING;
 	if (pledge("stdio rpath", NULL) == -1)
 		err(1, "pledge");
 
@@ -218,9 +223,6 @@ main(int argc, char *argv[])
 		usage();
 		/* NOTREACHED */
 	}
-
-	if (pledge("stdio", NULL) == -1)
-		err(1, "pledge");
 
 	/* Generate the delimiter sequence */
 	memcpy(delim, delim1, delim1len);

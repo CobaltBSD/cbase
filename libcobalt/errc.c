@@ -28,7 +28,7 @@
  * SUCH DAMAGE.
  */
 
-#include <openbsd.h>
+#include <bsd/err.h>
 
 #include <err.h>
 #include <stdarg.h>

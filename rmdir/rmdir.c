@@ -30,7 +30,8 @@
  * SUCH DAMAGE.
  */
 
-#include <openbsd.h>
+#include <bsd/sys/cdefs.h>
+#include <pledge.h>
 
 #include <err.h>
 #include <errno.h>
@@ -50,6 +51,7 @@ main(int argc, char *argv[])
 	int ch, errors;
 	int pflag;
 
+	__pledge_mode = PLEDGE_PENALTY_KILL_PROCESS | PLEDGE_STDERR_LOGGING;
 	if (pledge("stdio cpath", NULL) == -1)
 		err(1, "pledge");
 

@@ -64,7 +64,7 @@
  *	@(#)diffreg.c   8.1 (Berkeley) 6/6/93
  */
 
-#include <openbsd.h>
+#include <bsd/string.h>
 #include <time.h>
 
 #include <sys/stat.h>

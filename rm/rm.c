@@ -30,7 +30,11 @@
  * SUCH DAMAGE.
  */
 
-#include <openbsd.h>
+#include <bsd/pwd.h>
+#include <bsd/grp.h>
+#include <bsd/string.h>
+#include <bsd/err.h>
+#include <pledge.h>
 #include <sys/statfs.h>
 
 #include <sys/types.h>
@@ -105,11 +109,12 @@ main(int argc, char *argv[])
 	argc -= optind;
 	argv += optind;
 
+	__pledge_mode = PLEDGE_PENALTY_KILL_PROCESS | PLEDGE_STDERR_LOGGING;
 	if (Pflag) {
-		if (pledge("stdio rpath wpath cpath getpw", NULL) == -1)
+		if (pledge("stdio rpath wpath cpath tty", NULL) == -1)
 			err(1, "pledge");
 	} else {
-		if (pledge("stdio rpath cpath getpw", NULL) == -1)
+		if (pledge("stdio rpath cpath tty", NULL) == -1)
 			err(1, "pledge");
 	}
 

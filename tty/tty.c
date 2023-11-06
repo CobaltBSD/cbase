@@ -30,7 +30,8 @@
  * SUCH DAMAGE.
  */
 
-#include <openbsd.h>
+#include <unveil.h>
+#include <pledge.h>
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -60,7 +61,8 @@ main(int argc, char *argv[])
 
 	if (unveil(_PATH_DEVDB, "r") == -1)
 		err(1, "unveil %s", _PATH_DEVDB);
-	if (pledge("stdio rpath", NULL) == -1)
+	__pledge_mode = PLEDGE_PENALTY_KILL_PROCESS | PLEDGE_STDERR_LOGGING;
+	if (pledge("stdio rpath tty", NULL) == -1)
 		err(1, "pledge");
 
 	t = ttyname(STDIN_FILENO);

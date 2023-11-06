@@ -41,8 +41,7 @@
 
 #define _GNU_SOURCE
 
-#include <openbsd.h>
-
+#include <bsd/sys/time.h>
 #include <sys/time.h>
 
 #include <errno.h>

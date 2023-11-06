@@ -20,7 +20,10 @@
  * Materiel Command, USAF, under agreement number F39502-99-1-0512.
  */
 
-#include <openbsd.h>
+#include <bsd/sys/cdefs.h>
+#include <bsd/string.h>
+#include <bsd/stdio.h>
+#include <pledge.h>
 
 #include <sys/stat.h>
 
@@ -213,6 +216,7 @@ main(int argc, char **argv)
 	argc -= optind;
 	argv += optind;
 
+	__pledge_mode = PLEDGE_PENALTY_KILL_PROCESS | PLEDGE_STDERR_LOGGING;
 	if (pledge("stdio rpath tmppath", NULL) == -1)
 		err(2, "pledge");
 

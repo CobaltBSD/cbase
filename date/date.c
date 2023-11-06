@@ -34,7 +34,10 @@
 #define _POSIX_C_SOURCE 200112L
 #define _DEFAULT_SOURCE
 
-#include <openbsd.h>
+#include <bsd/sys/cdefs.h>
+#include <pledge.h>
+#include <bsd/stdlib.h>
+#include <unveil.h>
 
 #include <sys/types.h>
 #include <sys/time.h>
@@ -49,7 +52,7 @@
 #include <syslog.h>
 #include <time.h>
 #include <unistd.h>
-#include <util.h>
+#include <bsd/util.h>
 
 extern	char *__progname;
 
@@ -119,7 +122,8 @@ main(int argc, char *argv[])
 		argc--;
 	}
 
-	if (pledge("stdio", NULL) == -1)
+	__pledge_mode = PLEDGE_PENALTY_KILL_PROCESS | PLEDGE_STDERR_LOGGING;
+	if (pledge("stdio rpath", NULL) == -1)
 		err(1, "pledge");
 
 	if (*argv && **argv == '+') {
@@ -153,8 +157,6 @@ setthetime(char *p, const char *pformat)
 
 	/* Let us set the time even if logwtmp would fail. */
 	unveil("/var/log/wtmp", "w");
-	if (pledge("stdio settime wpath", NULL) == -1)
-		err(1, "pledge");
 
 	lt = localtime(&tval);
 

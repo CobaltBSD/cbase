@@ -33,7 +33,7 @@
  * SUCH DAMAGE.
  */
 
-#include <openbsd.h>
+#include <pledge.h>
 
 #include <err.h>
 #include <limits.h>
@@ -63,6 +63,7 @@ main(int argc, char *argv[])
 
 	setlocale(LC_ALL, "");
 
+	__pledge_mode = PLEDGE_PENALTY_KILL_PROCESS | PLEDGE_STDERR_LOGGING;
 	if (pledge("stdio rpath", NULL) == -1)
 		err(1, "pledge");
 
