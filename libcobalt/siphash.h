@@ -48,8 +48,8 @@
 #ifndef _SIPHASH_H_
 #define _SIPHASH_H_
 
-#include<stdint.h>
-#include<stddef.h>
+#include <stdint.h>
+#include <stddef.h>
 
 #define SIPHASH_BLOCK_LENGTH	 8
 #define SIPHASH_KEY_LENGTH	16

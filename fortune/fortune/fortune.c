@@ -53,7 +53,7 @@
 #include <string.h>
 #include <regex.h>
 #include <unistd.h>
-#include<arpa/inet.h>
+#include <arpa/inet.h>
 
 #include "pathnames.h"
 #include "../strfile/strfile.h"

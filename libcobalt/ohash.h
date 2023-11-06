@@ -18,7 +18,7 @@
 #ifndef OHASH_H
 #define OHASH_H
 
-#include<stdint.h>
+#include <stdint.h>
 
 /* Open hashing support. 
  * Open hashing was chosen because it is much lighter than other hash

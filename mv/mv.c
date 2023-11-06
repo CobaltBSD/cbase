@@ -33,8 +33,8 @@
  * SUCH DAMAGE.
  */
 
-#include<openbsd.h>
-#include<sys/statfs.h>
+#include <openbsd.h>
+#include <sys/statfs.h>
 
 #include <sys/time.h>
 #include <sys/wait.h>

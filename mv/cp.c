@@ -48,7 +48,7 @@
  * in "to") to form the final target path.
  */
 
-#include<openbsd.h>
+#include <openbsd.h>
 
 #include <sys/types.h>
 #include <sys/stat.h>

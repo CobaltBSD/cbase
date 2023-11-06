@@ -37,7 +37,7 @@
 #ifndef _SHA2_H
 #define _SHA2_H
 
-#include<sys/types.h>
+#include <sys/types.h>
 
 
 /*** SHA-256/384/512 Various Length Definitions ***********************/

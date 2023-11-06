@@ -25,7 +25,7 @@
 #ifndef  _RMD160_H
 #define  _RMD160_H
 
-#include<sys/types.h>
+#include <sys/types.h>
 
 #define	RMD160_BLOCK_LENGTH		64
 #define	RMD160_DIGEST_LENGTH		20

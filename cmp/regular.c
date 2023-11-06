@@ -30,7 +30,7 @@
  * SUCH DAMAGE.
  */
 
-#include<sys/types.h>
+#include <sys/types.h>
 
 #include <sys/mman.h>
 #include <sys/stat.h>

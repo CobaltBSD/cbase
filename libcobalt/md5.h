@@ -15,7 +15,7 @@
 #ifndef _MD5_H_
 #define _MD5_H_
 
-#include<sys/types.h>
+#include <sys/types.h>
 
 #define	MD5_BLOCK_LENGTH		64
 #define	MD5_DIGEST_LENGTH		16

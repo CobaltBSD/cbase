@@ -35,7 +35,7 @@
  *		BEWARE: lots of unfinished edges
  */
 
-#include<openbsd.h>
+#include <openbsd.h>
 
 #include <ctype.h>
 #include <err.h>

@@ -33,7 +33,7 @@
  * SUCH DAMAGE.
  */
 
-#include<openbsd.h>
+#include <openbsd.h>
 
 #include <assert.h>
 #include <ctype.h>

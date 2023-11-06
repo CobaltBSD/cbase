@@ -1,9 +1,9 @@
 #define _GNU_SOURCE
 
-#include<stdio.h>
-#include<stdbool.h>
-#include<string.h>
-#include<errno.h>
+#include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
+#include <errno.h>
 
 #ifndef EXECNAME
 #define EXECNAME "crunchgen"

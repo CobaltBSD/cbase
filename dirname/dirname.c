@@ -16,7 +16,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#include<openbsd.h>
+#include <openbsd.h>
 
 #include <err.h>
 #include <libgen.h>

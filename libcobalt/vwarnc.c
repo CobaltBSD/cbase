@@ -29,7 +29,7 @@
  */
 
 #define _GNU_SOURCE
-#include<errno.h>
+#include <errno.h>
 
 #include <err.h>
 #include <stdio.h>
