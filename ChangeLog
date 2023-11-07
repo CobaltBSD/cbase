@@ -1,7 +1,7 @@
 0.14 - ...
 * OpenBSD headers now include their respective non-BSD headers where
 appropriate
-* Fixed pledge in `expr` and `cut`
+* Fixed pledge in `expr`, `cut` and `cmp`
 
 0.13 - Nov 6 2023
 * Added OpenBSD `pledge()`

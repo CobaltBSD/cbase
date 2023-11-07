@@ -61,7 +61,7 @@ main(int argc, char *argv[])
 	char *file1, *file2;
 
 	__pledge_mode = PLEDGE_PENALTY_KILL_PROCESS | PLEDGE_STDERR_LOGGING;
-	if (pledge("stdio rpath", NULL) == -1)
+	if (pledge("stdio rpath tty", NULL) == -1)
 		err(ERR_EXIT, "pledge");
 
 	while ((ch = getopt(argc, argv, "ls")) != -1)
