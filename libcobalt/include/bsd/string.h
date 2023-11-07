@@ -1,6 +1,6 @@
 #pragma once
 
-#include <stddef.h>
+#include <string.h>
 
 void strmode(int mode, char *p);
 size_t strlcpy(char *dst, const char *src, size_t dsize);

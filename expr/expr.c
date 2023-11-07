@@ -503,7 +503,7 @@ main(int argc, char *argv[])
 	struct val     *vp;
 
 	__pledge_mode = PLEDGE_PENALTY_KILL_PROCESS | PLEDGE_STDERR_LOGGING;
-	if (pledge("stdio rpath", NULL) == -1)
+	if (pledge("stdio rpath tty", NULL) == -1)
 		err(2, "pledge");
 
 	if (argc > 1 && !strcmp(argv[1], "--"))

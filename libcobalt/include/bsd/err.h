@@ -1,5 +1,7 @@
 #pragma once
 
+#include <err.h>
+
 #include <stdarg.h>
 
 void warnc(int code, const char *format, ...);

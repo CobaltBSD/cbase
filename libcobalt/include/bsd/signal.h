@@ -1,5 +1,7 @@
 #pragma once
 
+#include <signal.h>
+
 #ifndef NSIG
 #define NSIG 32
 #endif

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <limits.h>
+
 #ifndef NL_TEXTMAX
 #define NL_TEXTMAX 2048
 #endif

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <stddef.h>
+#include <stdlib.h>
 
 long long strtonum(const char *numstr, long long minval, long long maxval, const char **errstrp);
 

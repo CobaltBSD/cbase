@@ -1,3 +1,7 @@
+#pragma once
+
+#include <sys/time.h>
+
 #define	timespecclear(tsp)		(tsp)->tv_sec = (tsp)->tv_nsec = 0
 #define	timespecisset(tsp)		((tsp)->tv_sec || (tsp)->tv_nsec)
 #define	timespeccmp(tsp, usp, cmp)					\
