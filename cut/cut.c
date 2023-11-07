@@ -145,9 +145,6 @@ main(int argc, char *argv[])
 			}
 		}
 	else {
-		if (pledge("stdio", NULL) == -1)
-			err(1, "pledge");
-
 		fcn(stdin, "stdin");
 	}
 	exit(rval);
