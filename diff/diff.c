@@ -217,7 +217,7 @@ main(int argc, char **argv)
 	argv += optind;
 
 	__pledge_mode = PLEDGE_PENALTY_KILL_PROCESS | PLEDGE_STDERR_LOGGING;
-	if (pledge("stdio rpath tmppath", NULL) == -1)
+	if (pledge("stdio rpath tmppath tty", NULL) == -1)
 		err(2, "pledge");
 
 	/*
