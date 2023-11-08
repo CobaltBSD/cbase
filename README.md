@@ -6,7 +6,6 @@ Most, but not all, of the utilities included here originate from OpenBSD. This d
 
 ## Dependencies
 * C compiler
-* [zxcvbn-c](https://github.com/tsyrogit/zxcvbn-c) (and a dictionary installed to `/usr/share/misc/zxcvbn.dict`)
 * [libcobalt](https://github.com/CobaltBSD/libcobalt)
 
 ## Installation
