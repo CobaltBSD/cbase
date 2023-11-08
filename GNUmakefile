@@ -1,9 +1,8 @@
-CFLAGS += -lzxcvbn -Ilibcobalt/include -Llibcobalt -lcobalt -lm -lncurses
+CFLAGS += -lzxcvbn -lcobalt -lm -lncurses
 BINDIR := /usr/bin
 SBINDIR := /usr/sbin
 
 all:
-	$(MAKE) -C libcobalt
 	$(MAKE) -C doas
 	$(MAKE) -C fortune
 	EXECNAME=cbtutils LIBS=-lncurses ./crunchgen/genmakefile.sh > cbtutils-makefile
@@ -11,7 +10,6 @@ all:
 
 clean:
 	rm -rfv cbtutils-makefile crunchgen/cbtutils crunchgen/entry_points.h
-	$(MAKE) -C libcobalt clean
 	$(MAKE) -C doas clean
 	$(MAKE) -C fortune clean
 	find . -name "*.o" -delete
@@ -20,7 +18,6 @@ install:
 	$(MAKE) -C doas install
 	$(MAKE) -C fortune install-datfiles
 	$(MAKE) -C units install-lib
-	$(MAKE) -C libcobalt install-extras
 	install -D crunchgen/cbtutils $(DESTDIR)$(BINDIR)/cbtutils
 	mkdir -p $(DESTDIR)$(SBINDIR)
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/cp
@@ -99,6 +96,5 @@ install:
 	cp -rf doc/man6 "${DESTDIR}/usr/share/man"
 	cp -rf doc/man8 "${DESTDIR}/usr/share/man"
 
-#TODO: install libcobalt headers
 #TODO: other bsd man pages?
 #TODO: install man pages

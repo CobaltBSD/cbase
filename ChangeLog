@@ -2,6 +2,7 @@
 * OpenBSD headers now include their respective non-BSD headers where
 appropriate
 * Fixed uncommon pledge failures in `expr`, `cut`, `cmp` and `diff`
+* Moved libcobalt into a separate repository
 
 0.13 - Nov 6 2023
 * Added OpenBSD `pledge()`
