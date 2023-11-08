@@ -1,6 +1,6 @@
 # Crunchgen
 
-This is a mini reimplementation of BSD crunchgen.
+This is a mini reimplementation of NetBSD crunchgen.
 
 Unlike the original crunchgen, this does not exist as a standalone program. Rather, it is a skeleton for incorporating several main functions into a single program, which can then be executed according to argv.
 
