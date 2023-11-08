@@ -91,7 +91,6 @@ install:
 	# `version` utility is deliberately un-symlinked
 	install -m755 -d "${DESTDIR}/usr/share/man"
 	cp -rf doc/man1 "${DESTDIR}/usr/share/man"
-	cp -rf doc/man3 "${DESTDIR}/usr/share/man"
 	cp -rf doc/man5 "${DESTDIR}/usr/share/man"
 	cp -rf doc/man6 "${DESTDIR}/usr/share/man"
 	cp -rf doc/man8 "${DESTDIR}/usr/share/man"
