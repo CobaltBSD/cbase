@@ -23,7 +23,7 @@
 #include <bsd/sys/cdefs.h>
 #include <bsd/string.h>
 #include <bsd/stdio.h>
-#include <pledge.h>
+#include <bsd/unistd.h>
 
 #include <sys/stat.h>
 

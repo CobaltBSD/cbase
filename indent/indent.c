@@ -32,7 +32,7 @@
  * SUCH DAMAGE.
  */
 
-#include <pledge.h>
+#include <bsd/unistd.h>
 #include <bsd/err.h>
 
 #include <fcntl.h>

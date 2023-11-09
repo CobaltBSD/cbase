@@ -32,7 +32,7 @@
  */
 
 #include <bsd/sys/cdefs.h>
-#include <pledge.h>
+#include <bsd/unistd.h>
 #include <bsd/sys/param.h>
 
 #include <sys/param.h>	/* MACHINE_ARCH */

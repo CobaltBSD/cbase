@@ -34,7 +34,7 @@
  * SUCH DAMAGE.
  */
 
-#include <pledge.h>
+#include <bsd/unistd.h>
 #include <bsd/sys/signal.h>
 
 #include <sys/types.h>

@@ -48,7 +48,7 @@
  * in "to") to form the final target path.
  */
 
-#include <pledge.h>
+#include <bsd/unistd.h>
 #include <bsd/string.h>
 #include <bsd/err.h>
 

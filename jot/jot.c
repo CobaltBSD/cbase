@@ -40,7 +40,7 @@
 
 #include <bsd/sys/cdefs.h>
 #include <bsd/stdlib.h>
-#include <pledge.h>
+#include <bsd/unistd.h>
 #include <time.h>
 
 #include <ctype.h>

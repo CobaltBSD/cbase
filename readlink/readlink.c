@@ -27,7 +27,7 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <pledge.h>
+#include <bsd/unistd.h>
 
 #include <err.h>
 #include <errno.h>

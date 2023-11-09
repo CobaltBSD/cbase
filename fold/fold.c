@@ -37,7 +37,7 @@
 #define _DEFAULT_SOURCE
 
 #include <bsd/sys/cdefs.h>
-#include <pledge.h>
+#include <bsd/unistd.h>
 #include <bsd/stdlib.h>
 
 #include <ctype.h>

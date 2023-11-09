@@ -34,7 +34,7 @@
 #include <bsd/grp.h>
 #include <bsd/string.h>
 #include <bsd/err.h>
-#include <pledge.h>
+#include <bsd/unistd.h>
 #include <sys/statfs.h>
 
 #include <sys/types.h>

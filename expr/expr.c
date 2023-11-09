@@ -10,7 +10,7 @@
 
 #include <bsd/sys/cdefs.h>
 #include <bsd/stdlib.h>
-#include <pledge.h>
+#include <bsd/unistd.h>
 
 #include <stdio.h>
 #include <stdint.h>

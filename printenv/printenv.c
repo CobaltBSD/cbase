@@ -29,7 +29,7 @@
  * SUCH DAMAGE.
  */
 
-#include <pledge.h>
+#include <bsd/unistd.h>
 
 #include <stdio.h>
 #include <string.h>

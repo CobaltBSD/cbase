@@ -18,7 +18,7 @@
 
 #include <bsd/sys/cdefs.h>
 #include <bsd/stdio.h>
-#include <pledge.h>
+#include <bsd/unistd.h>
 
 #include <assert.h>
 #include <ctype.h>

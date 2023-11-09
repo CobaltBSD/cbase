@@ -84,7 +84,6 @@ install:
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/yes
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/freq
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/unicode
-	ln -sf cbtutils $(DESTDIR)$(BINDIR)/entropy
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/wisdom
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/shsecret
 	ln -sf cbtutils $(DESTDIR)$(BINDIR)/unifdef
@@ -94,6 +93,3 @@ install:
 	cp -rf doc/man5 "${DESTDIR}/usr/share/man"
 	cp -rf doc/man6 "${DESTDIR}/usr/share/man"
 	cp -rf doc/man8 "${DESTDIR}/usr/share/man"
-
-#TODO: other bsd man pages?
-#TODO: install man pages

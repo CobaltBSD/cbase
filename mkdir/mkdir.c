@@ -32,7 +32,6 @@
 
 #include <bsd/sys/cdefs.h>
 #include <bsd/unistd.h>
-#include <pledge.h>
 
 #include <sys/types.h>
 #include <sys/stat.h>

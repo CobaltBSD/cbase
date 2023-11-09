@@ -30,7 +30,7 @@
  * SUCH DAMAGE.
  */
 
-#include <pledge.h>
+#include <bsd/unistd.h>
 #include <bsd/sys/cdefs.h>
 
 #include <sys/stat.h>

@@ -16,7 +16,7 @@
  */
 
 #include <bsd/sys/cdefs.h>
-#include <pledge.h>
+#include <bsd/unistd.h>
 #include <bsd/stdlib.h>
 
 #include <err.h>

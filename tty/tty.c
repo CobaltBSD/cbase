@@ -31,7 +31,7 @@
  */
 
 #include <unveil.h>
-#include <pledge.h>
+#include <bsd/unistd.h>
 
 #include <stdio.h>
 #include <stdlib.h>

@@ -31,7 +31,7 @@
  */
 
 #include <bsd/sys/cdefs.h>
-#include <pledge.h>
+#include <bsd/unistd.h>
 #include <bsd/err.h>
 #include <sys/types.h>
 #include <sys/stat.h>
