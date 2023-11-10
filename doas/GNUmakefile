@@ -1,4 +1,4 @@
-# We build doas separately and uncrunched, so that we don't need to setuid the entire cbtutils binary
+# We build doas separately and uncrunched, so that we don't need to setuid the entire cbutils binary
 
 CFLAGS+=-I../libcobalt
 LDFLAGS+=-lcobalt -L../libcobalt -lcrypt
