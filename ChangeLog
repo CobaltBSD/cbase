@@ -1,4 +1,4 @@
-0.14 - Nov 8 2023
+0.14 - Nov 9 2023
 * Fixed uncommon pledge failures in `expr`, `cut`, `cmp` and `diff`
 * Moved libcobalt into a separate repository
 * Moved `entropy` into a separate repo
