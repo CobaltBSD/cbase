@@ -73,7 +73,7 @@ main(int argc, char *argv[])
 	setlocale(LC_CTYPE, "");
 
 	__pledge_mode = PLEDGE_PENALTY_KILL_PROCESS | PLEDGE_STDERR_LOGGING;
-	if (pledge("stdio rpath", NULL) == -1)
+	if (pledge("stdio rpath wpath", NULL) == -1)
 		err(1, "pledge");
 
 	dchar[0] = '\t';		/* default delimiter */

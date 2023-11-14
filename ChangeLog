@@ -1,5 +1,6 @@
 0.15 - ...
 * Renamed to cbutils
+* Fixed uncommon pledge failure in `cut`
 
 0.14 - Nov 9 2023
 * Fixed uncommon pledge failures in `expr`, `cut`, `cmp` and `diff`
