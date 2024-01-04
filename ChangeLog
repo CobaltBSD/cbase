@@ -1,5 +1,5 @@
 0.15 - ...
-* Renamed to cbutils
+* Renamed to cbase
 * Fixed uncommon pledge failure in `cut`
 
 0.14 - Nov 9 2023

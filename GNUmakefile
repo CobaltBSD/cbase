@@ -5,11 +5,11 @@ SBINDIR := /usr/sbin
 all:
 	$(MAKE) -C doas
 	$(MAKE) -C fortune
-	EXECNAME=cbutils LIBS=-lncurses ./crunchgen/genmakefile.sh > cbutils-makefile
-	$(MAKE) -f cbutils-makefile
+	EXECNAME=cbase LIBS=-lncurses ./crunchgen/genmakefile.sh > cbase-makefile
+	$(MAKE) -f cbase-makefile
 
 clean:
-	rm -rfv cbutils-makefile crunchgen/cbutils crunchgen/entry_points.h
+	rm -rfv cbase-makefile crunchgen/cbase crunchgen/entry_points.h
 	$(MAKE) -C doas clean
 	$(MAKE) -C fortune clean
 	find . -name "*.o" -delete
@@ -18,75 +18,75 @@ install:
 	$(MAKE) -C doas install
 	$(MAKE) -C fortune install-datfiles
 	$(MAKE) -C units install-lib
-	install -D crunchgen/cbutils $(DESTDIR)$(BINDIR)/cbutils
+	install -D crunchgen/cbase $(DESTDIR)$(BINDIR)/cbase
 	mkdir -p $(DESTDIR)$(SBINDIR)
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/cp
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/mv
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/fortune
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/grdc
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/locale
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/ls
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/number
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/tetris
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/units
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/arch
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/banner
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/basename
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/cat
-	ln -sf ../bin/cbutils $(DESTDIR)$(SBINDIR)/chroot
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/cmp
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/comm
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/cut
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/date
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/dd
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/diff
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/dirname
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/echo
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/expr
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/false
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/fold
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/getopt
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/head
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/hostname
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/indent
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/jot
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/kill
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/ln
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/logger
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/logname
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/mkdir
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/mktemp
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/nl
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/printenv
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/printf
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/pwd
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/readlink
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/realpath
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/rev
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/rm
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/rmdir
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/rs
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/seq
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/sleep
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/split
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/tail
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/timeout
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/touch
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/tr
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/true
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/tsort
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/tty
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/uname
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/uniq
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/unvis
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/vis
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/wc
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/yes
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/freq
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/unicode
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/wisdom
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/shsecret
-	ln -sf cbutils $(DESTDIR)$(BINDIR)/unifdef
+	ln -sf cbase $(DESTDIR)$(BINDIR)/cp
+	ln -sf cbase $(DESTDIR)$(BINDIR)/mv
+	ln -sf cbase $(DESTDIR)$(BINDIR)/fortune
+	ln -sf cbase $(DESTDIR)$(BINDIR)/grdc
+	ln -sf cbase $(DESTDIR)$(BINDIR)/locale
+	ln -sf cbase $(DESTDIR)$(BINDIR)/ls
+	ln -sf cbase $(DESTDIR)$(BINDIR)/number
+	ln -sf cbase $(DESTDIR)$(BINDIR)/tetris
+	ln -sf cbase $(DESTDIR)$(BINDIR)/units
+	ln -sf cbase $(DESTDIR)$(BINDIR)/arch
+	ln -sf cbase $(DESTDIR)$(BINDIR)/banner
+	ln -sf cbase $(DESTDIR)$(BINDIR)/basename
+	ln -sf cbase $(DESTDIR)$(BINDIR)/cat
+	ln -sf ../bin/cbase $(DESTDIR)$(SBINDIR)/chroot
+	ln -sf cbase $(DESTDIR)$(BINDIR)/cmp
+	ln -sf cbase $(DESTDIR)$(BINDIR)/comm
+	ln -sf cbase $(DESTDIR)$(BINDIR)/cut
+	ln -sf cbase $(DESTDIR)$(BINDIR)/date
+	ln -sf cbase $(DESTDIR)$(BINDIR)/dd
+	ln -sf cbase $(DESTDIR)$(BINDIR)/diff
+	ln -sf cbase $(DESTDIR)$(BINDIR)/dirname
+	ln -sf cbase $(DESTDIR)$(BINDIR)/echo
+	ln -sf cbase $(DESTDIR)$(BINDIR)/expr
+	ln -sf cbase $(DESTDIR)$(BINDIR)/false
+	ln -sf cbase $(DESTDIR)$(BINDIR)/fold
+	ln -sf cbase $(DESTDIR)$(BINDIR)/getopt
+	ln -sf cbase $(DESTDIR)$(BINDIR)/head
+	ln -sf cbase $(DESTDIR)$(BINDIR)/hostname
+	ln -sf cbase $(DESTDIR)$(BINDIR)/indent
+	ln -sf cbase $(DESTDIR)$(BINDIR)/jot
+	ln -sf cbase $(DESTDIR)$(BINDIR)/kill
+	ln -sf cbase $(DESTDIR)$(BINDIR)/ln
+	ln -sf cbase $(DESTDIR)$(BINDIR)/logger
+	ln -sf cbase $(DESTDIR)$(BINDIR)/logname
+	ln -sf cbase $(DESTDIR)$(BINDIR)/mkdir
+	ln -sf cbase $(DESTDIR)$(BINDIR)/mktemp
+	ln -sf cbase $(DESTDIR)$(BINDIR)/nl
+	ln -sf cbase $(DESTDIR)$(BINDIR)/printenv
+	ln -sf cbase $(DESTDIR)$(BINDIR)/printf
+	ln -sf cbase $(DESTDIR)$(BINDIR)/pwd
+	ln -sf cbase $(DESTDIR)$(BINDIR)/readlink
+	ln -sf cbase $(DESTDIR)$(BINDIR)/realpath
+	ln -sf cbase $(DESTDIR)$(BINDIR)/rev
+	ln -sf cbase $(DESTDIR)$(BINDIR)/rm
+	ln -sf cbase $(DESTDIR)$(BINDIR)/rmdir
+	ln -sf cbase $(DESTDIR)$(BINDIR)/rs
+	ln -sf cbase $(DESTDIR)$(BINDIR)/seq
+	ln -sf cbase $(DESTDIR)$(BINDIR)/sleep
+	ln -sf cbase $(DESTDIR)$(BINDIR)/split
+	ln -sf cbase $(DESTDIR)$(BINDIR)/tail
+	ln -sf cbase $(DESTDIR)$(BINDIR)/timeout
+	ln -sf cbase $(DESTDIR)$(BINDIR)/touch
+	ln -sf cbase $(DESTDIR)$(BINDIR)/tr
+	ln -sf cbase $(DESTDIR)$(BINDIR)/true
+	ln -sf cbase $(DESTDIR)$(BINDIR)/tsort
+	ln -sf cbase $(DESTDIR)$(BINDIR)/tty
+	ln -sf cbase $(DESTDIR)$(BINDIR)/uname
+	ln -sf cbase $(DESTDIR)$(BINDIR)/uniq
+	ln -sf cbase $(DESTDIR)$(BINDIR)/unvis
+	ln -sf cbase $(DESTDIR)$(BINDIR)/vis
+	ln -sf cbase $(DESTDIR)$(BINDIR)/wc
+	ln -sf cbase $(DESTDIR)$(BINDIR)/yes
+	ln -sf cbase $(DESTDIR)$(BINDIR)/freq
+	ln -sf cbase $(DESTDIR)$(BINDIR)/unicode
+	ln -sf cbase $(DESTDIR)$(BINDIR)/wisdom
+	ln -sf cbase $(DESTDIR)$(BINDIR)/shsecret
+	ln -sf cbase $(DESTDIR)$(BINDIR)/unifdef
 	# `version` utility is deliberately un-symlinked
 	install -m755 -d "${DESTDIR}/usr/share/man"
 	cp -rf doc/man1 "${DESTDIR}/usr/share/man"
